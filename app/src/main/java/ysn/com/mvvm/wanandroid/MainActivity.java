@@ -1,4 +1,4 @@
-package ysn.com.app.wanandroid;
+package ysn.com.mvvm.wanandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 

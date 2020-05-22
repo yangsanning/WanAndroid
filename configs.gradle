@@ -1,0 +1,56 @@
+ext {
+    version = [
+            minSdkVersion    : 21,
+            compileSdkVersion: 29,
+            targetSdkVersion : 29,
+            versionCode      : 10000,
+            versionName      : "1.0.0",
+    ]
+
+    dependVersion = [
+            design          : "29.0.0",
+            recyclerview    : "1.1.0",
+            appcompat       : "1.1.0",
+            constraintlayout: "1.1.3",
+            viewpager2      : "1.0.0",
+
+            retrofit        : "2.7.0",
+            rxJava          : "2.2.3",
+            rxAndroid       : "2.1.0",
+            rxLife          : "1.0",
+
+            glide           : "4.11.0",
+    ]
+
+    baseLib = [
+            design          : "com.android.support:design:$dependVersion.design",
+            recyclerview    : "androidx.recyclerview:recyclerview:$dependVersion.recyclerview",
+            appcompat       : "androidx.appcompat:appcompat:$dependVersion.appcompat",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:$dependVersion.constraintlayout",
+            viewpager2      : "androidx.viewpager2:viewpager2:$dependVersion.viewpager2",
+            multidex        : "com.google.android.material:material:1.1.0",
+            lifecycle       : "android.arch.lifecycle:extensions:1.1.1",
+    ]
+
+    retrofitLib = [
+            retrofit        : "com.squareup.retrofit2:retrofit:$dependVersion.retrofit",
+            retrofit_scalars: "com.squareup.retrofit2:converter-scalars:$dependVersion.retrofit",
+            retrofit_gson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofit",
+            retrofit_rxjava : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofit",
+    ]
+
+    rxJavaLib = [
+            rxJava   : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid",
+    ]
+
+    glideLib = [
+            glide: "com.github.bumptech.glide:glide:$dependVersion.glide",
+    ]
+    glideCompiler = "com.github.bumptech.glide:compiler:$dependVersion.glide"
+
+    baseLibs = baseLib.values()
+    retrofitLibs = retrofitLib.values()
+    rxJavaLibs = rxJavaLib.values()
+    glideLibs = glideLib.values()
+}

@@ -1,4 +1,4 @@
-package ysn.com.app.wanandroid;
+package ysn.com.mvvm.base;
 
 import org.junit.Test;
 
