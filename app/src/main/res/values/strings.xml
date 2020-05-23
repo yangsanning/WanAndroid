@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WanAndroid</string>
+
+    <string name="network_exception">请检查网络是否正常</string>
+
+    <string name="text_user_name_not_null">用户名不能为空</string>
+    <string name="text_pwd_not_null">密码不能为空</string>
 </resources>
