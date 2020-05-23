@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import ysn.com.mvvm.base.R;
+import ysn.com.mvvm.utils.ToastUtils;
 
 /**
  * @Author yangsanning
@@ -74,8 +75,7 @@ public class LoadingDialog {
      */
     private void timeoutCancel() {
         boolean showing = loadingDialog.isShowing();
-        // todo:
-//        ToastUtils.showNetworkError();
+        ToastUtils.showNetworkError();
         if (showing) {
             loadingDialog.dismiss();
         }

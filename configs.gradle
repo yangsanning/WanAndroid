@@ -36,12 +36,14 @@ ext {
             retrofit        : "com.squareup.retrofit2:retrofit:$dependVersion.retrofit",
             retrofit_scalars: "com.squareup.retrofit2:converter-scalars:$dependVersion.retrofit",
             retrofit_gson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofit",
-            retrofit_rxjava : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofit",
+            retrofit_rxjava : "com.squareup.retrofit2:adapter-rxjava:$dependVersion.retrofit",
     ]
 
     rxJavaLib = [
             rxJava   : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid",
+            rxLife       : "com.trello:rxlifecycle:$dependVersion.rxLife",
+            rxLife_common: "com.trello:rxlifecycle-components:$dependVersion.rxLife",
     ]
 
     glideLib = [
