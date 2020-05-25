@@ -83,6 +83,10 @@ public abstract class BaseDataBingFragment<DataBinding extends ViewDataBinding> 
         }
     }
 
+    protected <T> T activityCast() {
+        return (T) mActivity;
+    }
+
     protected void finishActivity() {
         finishActivity(mActivity);
     }

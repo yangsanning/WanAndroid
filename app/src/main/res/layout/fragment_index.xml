@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ysn="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar"
+            android:background="@color/app_white"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/app_space_big"
+            android:paddingEnd="@dimen/app_space_big">
+
+            <com.gcssloop.widget.RCImageView
+                android:layout_width="@dimen/px_64"
+                android:layout_height="@dimen/px_64"
+                android:src="@mipmap/ic_launcher"
+                ysn:round_as_circle="true" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px_50"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textColor="@color/app_text_title"
+                android:textSize="@dimen/pt40" />
+
+            <ImageView
+                android:layout_width="@dimen/px_72"
+                android:layout_height="@dimen/px_72"
+                android:src="@drawable/ic_search" />
+        </LinearLayout>
+
+        <com.zhpan.bannerview.BannerViewPager
+            android:id="@+id/banner_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_320"
+            ysn:bvp_auto_play="true"
+            ysn:bvp_can_loop="true"
+            ysn:bvp_indicator_visibility="gone"
+            ysn:bvp_interval="3000"
+            ysn:bvp_scroll_duration="800" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/article_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/app_space_big" />
+    </LinearLayout>
+</layout>
