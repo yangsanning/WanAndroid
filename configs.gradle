@@ -51,8 +51,13 @@ ext {
     ]
     glideCompiler = "com.github.bumptech.glide:compiler:$dependVersion.glide"
 
+    ysnLib = [
+            bottom_menu_layout : "com.github.yangsanning:BottomMenuLayout:v1.1.0",
+    ]
+
     baseLibs = baseLib.values()
     retrofitLibs = retrofitLib.values()
     rxJavaLibs = rxJavaLib.values()
     glideLibs = glideLib.values()
+    ysnLibs = ysnLib.values()
 }

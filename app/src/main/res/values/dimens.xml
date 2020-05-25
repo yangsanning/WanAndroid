@@ -50,9 +50,12 @@
     <!--icon大小-->
     <dimen name="app_icon">17.28dp</dimen>
 
-    // 大型item
+    <!-- 大型item-->
     <!--100px-->
     <dimen name="app_item">48dp</dimen>
+
+    <!-- 底部菜单栏-->
+    <dimen name="bottom_menu_layout_height">53.76dp</dimen>
 
     <!--其他-->
     <dimen name="px_minus_23">-11.04dp</dimen>
