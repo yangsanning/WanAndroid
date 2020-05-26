@@ -4,6 +4,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 
+import androidx.lifecycle.ViewModelProviders;
+
 import ysn.com.mvvm.base.BaseActivity;
 import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.mvvm.utils.ToastUtils;
@@ -36,7 +38,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
 
     @Override
     protected LoginViewModel getViewModel() {
-        return new LoginViewModel();
+        return ViewModelProviders.of(this).get(LoginViewModel.class);
     }
 
     @Override
