@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import ysn.com.mvvm.dialog.LoadingDialog;
+import ysn.com.mvvm.widget.dialog.LoadingDialog;
 import ysn.com.mvvm.utils.ActivityUtils;
 
 /**

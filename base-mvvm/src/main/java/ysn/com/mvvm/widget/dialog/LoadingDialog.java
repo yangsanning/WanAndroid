@@ -1,4 +1,4 @@
-package ysn.com.mvvm.dialog;
+package ysn.com.mvvm.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
