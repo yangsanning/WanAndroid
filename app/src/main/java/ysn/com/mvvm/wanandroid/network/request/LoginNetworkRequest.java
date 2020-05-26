@@ -1,7 +1,8 @@
 package ysn.com.mvvm.wanandroid.network.request;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import ysn.com.mvvm.network.BaseNetworkCallback;
 import ysn.com.mvvm.wanandroid.bean.User;
 import ysn.com.mvvm.network.BaseNetworkRequest;
 import ysn.com.mvvm.wanandroid.network.NetworkClient;
@@ -30,10 +31,10 @@ public class LoginNetworkRequest extends BaseNetworkRequest {
     /**
      * 登录
      */
-    public void login(String username, String password, Subscriber<User> subscribers) {
+    public Disposable login(String username, String password, BaseNetworkCallback<User> networkCallback) {
         Observable<User> observable = NetworkClient.get().mService
                 .login(username, password)
                 .map(new NetworkResultFun<>());
-        toSubscribe(observable, subscribers);
+        return toSubscribe(observable, networkCallback);
     }
 }

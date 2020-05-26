@@ -1,5 +1,6 @@
 package ysn.com.mvvm.wanandroid.page.login;
 
+import io.reactivex.disposables.Disposable;
 import ysn.com.mvvm.lifecycle.BaseViewModel;
 import ysn.com.mvvm.lifecycle.ResultLiveData;
 import ysn.com.mvvm.network.BaseNetworkCallback;
@@ -21,7 +22,7 @@ public class LoginViewModel extends BaseViewModel {
 
     public void login(String userName, String password) {
         loadingDialogLiveData.setValue(true);
-        LoginNetworkRequest.get().login(userName, password, new BaseNetworkCallback<User>() {
+        Disposable login = LoginNetworkRequest.get().login(userName, password, new BaseNetworkCallback<User>() {
             @Override
             public void onSuccess(User data) {
                 loadingDialogLiveData.setValue(false);
@@ -34,6 +35,7 @@ public class LoginViewModel extends BaseViewModel {
                 userResultLiveData.postFailure(code, msg);
             }
         });
+        addDisposable(login);
     }
 
     public ResultLiveData<User> getUserResultLiveData() {

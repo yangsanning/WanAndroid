@@ -1,9 +1,9 @@
 package ysn.com.mvvm.wanandroid.network;
 
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import rx.Observable;
 import ysn.com.mvvm.wanandroid.bean.User;
 
 /**
