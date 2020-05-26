@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_toast"
+    android:paddingTop="@dimen/toast_vertical_padding"
+    android:paddingBottom="@dimen/toast_vertical_padding"
+    android:paddingEnd="@dimen/toast_horizontal_padding"
+    android:paddingStart="@dimen/toast_horizontal_padding">
+
+    <TextView
+        android:id="@+id/toast_view_text"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textColor="@color/toast_text"
+        android:textSize="@dimen/toast_text_size"
+        tools:text="测试" />
+</FrameLayout>

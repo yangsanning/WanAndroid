@@ -3,4 +3,9 @@
     <dimen name="loading_dialog_radius">3.84dp</dimen>
     <dimen name="loading_dialog_progress_bar_size">24dp</dimen>
     <dimen name="loading_dialog_progress_bar_margin">19.2dp</dimen>
+
+    <dimen name="toast_text_size">15.35sp</dimen>
+    <dimen name="toast_radius">3.84dp</dimen>
+    <dimen name="toast_vertical_padding">14.4dp</dimen>
+    <dimen name="toast_horizontal_padding">19.2dp</dimen>
 </resources>
