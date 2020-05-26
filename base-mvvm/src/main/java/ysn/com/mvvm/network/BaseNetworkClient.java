@@ -7,7 +7,7 @@ import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ysn.com.mvvm.network.interceptor.LogInterceptor;
 import ysn.com.mvvm.network.interceptor.RewriteCacheControlInterceptor;
@@ -36,7 +36,7 @@ public class BaseNetworkClient {
                 // 支持直接格式化json返回Bean对象
                 .addConverterFactory(GsonConverterFactory.create())
                 // 支持RxJava
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(baseUrl)
                 .build();
         return retrofit.create(service);

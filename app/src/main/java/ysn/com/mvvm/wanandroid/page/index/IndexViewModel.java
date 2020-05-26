@@ -2,6 +2,7 @@ package ysn.com.mvvm.wanandroid.page.index;
 
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
 import ysn.com.mvvm.lifecycle.BaseViewModel;
 import ysn.com.mvvm.lifecycle.ResultLiveData;
 import ysn.com.mvvm.network.BaseNetworkCallback;
@@ -20,7 +21,7 @@ public class IndexViewModel extends BaseViewModel {
 
     private ResultLiveData<List<Banner>> bannerResultLiveData = new ResultLiveData<>();
 
-    public void init(){
+    public void init() {
         getBanner();
         getArticleList(0);
     }
@@ -29,7 +30,7 @@ public class IndexViewModel extends BaseViewModel {
      * 获取首页banner
      */
     public void getBanner() {
-        IndexNetworkRequest.get().getBanner(new BaseNetworkCallback<List<Banner>>() {
+        Disposable banner = IndexNetworkRequest.get().getBanner(new BaseNetworkCallback<List<Banner>>() {
             @Override
             public void onSuccess(List<Banner> data) {
                 bannerResultLiveData.postSuccess(data);
@@ -39,13 +40,14 @@ public class IndexViewModel extends BaseViewModel {
             public void onFailure(int code, String msg) {
             }
         });
+        addDisposable(banner);
     }
 
     /**
      * 获取首页文章列表
      */
     public void getArticleList(int page) {
-        IndexNetworkRequest.get().getArticleList(page, new BaseNetworkCallback<NetworkResultList<Article>>() {
+        Disposable articleList = IndexNetworkRequest.get().getArticleList(page, new BaseNetworkCallback<NetworkResultList<Article>>() {
             @Override
             public void onSuccess(NetworkResultList<Article> data) {
 
@@ -56,6 +58,7 @@ public class IndexViewModel extends BaseViewModel {
 
             }
         });
+        addDisposable(articleList);
     }
 
     public ResultLiveData<List<Banner>> getBannerResultLiveData() {

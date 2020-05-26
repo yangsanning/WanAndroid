@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.BaseBannerAdapter;
@@ -35,7 +36,7 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
 
     @Override
     protected IndexViewModel getViewModel() {
-        return new IndexViewModel();
+        return ViewModelProviders.of(this).get(IndexViewModel.class);
     }
 
     @Override

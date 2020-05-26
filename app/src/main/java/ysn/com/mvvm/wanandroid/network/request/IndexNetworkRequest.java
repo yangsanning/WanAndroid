@@ -2,8 +2,9 @@ package ysn.com.mvvm.wanandroid.network.request;
 
 import java.util.List;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import ysn.com.mvvm.network.BaseNetworkCallback;
 import ysn.com.mvvm.network.BaseNetworkRequest;
 import ysn.com.mvvm.wanandroid.bean.Article;
 import ysn.com.mvvm.wanandroid.bean.Banner;
@@ -34,20 +35,20 @@ public class IndexNetworkRequest extends BaseNetworkRequest {
     /**
      * 获取首页banner
      */
-    public void getBanner(Subscriber<List<Banner>> subscribers) {
+    public Disposable getBanner(BaseNetworkCallback<List<Banner>> networkCallback) {
         Observable<List<Banner>> observable = NetworkClient.get().mService
                 .getBanner()
                 .map(new NetworkResultFun<>());
-        toSubscribe(observable, subscribers);
+      return  toSubscribe(observable, networkCallback);
     }
 
     /**
      * 获取首页文章列表
      */
-    public void getArticleList(int page, Subscriber<NetworkResultList<Article>> subscribers) {
+    public Disposable getArticleList(int page, BaseNetworkCallback<NetworkResultList<Article>> networkCallback) {
         Observable<NetworkResultList<Article>> observable = NetworkClient.get().mService
                 .getArticleList(page)
                 .map(new NetworkResultFun<>());
-        toSubscribe(observable, subscribers);
+        return toSubscribe(observable, networkCallback);
     }
 }

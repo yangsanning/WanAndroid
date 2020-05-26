@@ -36,7 +36,7 @@ ext {
             retrofit        : "com.squareup.retrofit2:retrofit:$dependVersion.retrofit",
             retrofit_scalars: "com.squareup.retrofit2:converter-scalars:$dependVersion.retrofit",
             retrofit_gson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofit",
-            retrofit_rxjava : "com.squareup.retrofit2:adapter-rxjava:$dependVersion.retrofit",
+            retrofit_rxjava : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofit",
     ]
 
     rxJavaLib = [
