@@ -20,10 +20,16 @@ public abstract class BaseViewModel extends ViewModel {
      * 订阅者容器(rxJava 请求)
      */
     private CompositeDisposable compositeDisposable;
+
     /**
      * 用来通知 Activity／Fragment 是否显示等待Dialog
      */
     protected MutableLiveData<Boolean> loadingDialogLiveData = new MutableLiveData<>();
+
+    /**
+     * 土司
+     */
+    protected MutableLiveData<String> toastLiveData = new MutableLiveData<>();
 
     /**
      * 添加 rxJava 请求进入容器
@@ -37,6 +43,10 @@ public abstract class BaseViewModel extends ViewModel {
 
     public void observeLoadingDialog(LifecycleOwner owner, Observer<Boolean> observer) {
         loadingDialogLiveData.observe(owner, observer);
+    }
+
+    public void observeToastLiveData(LifecycleOwner owner, Observer<String> observer) {
+        toastLiveData.observe(owner, observer);
     }
 
     /**

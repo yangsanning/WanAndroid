@@ -3,11 +3,15 @@ package ysn.com.mvvm.base;
 import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import ysn.com.mvvm.utils.ResUtils;
+import ysn.com.mvvm.utils.ToastUtils;
 import ysn.com.mvvm.widget.dialog.LoadingDialog;
 import ysn.com.mvvm.utils.ActivityUtils;
 
@@ -77,5 +81,21 @@ public abstract class BaseDataBingActivity<DataBinding extends ViewDataBinding> 
             loadingDialog.dismiss();
             loadingDialog = null;
         }
+    }
+
+    public void showMessage(@NonNull String msg) {
+        ToastUtils.showNormalToast(msg);
+    }
+
+    public void showMessage(@StringRes int resId) {
+        ToastUtils.showNormalToast(ResUtils.getString(resId));
+    }
+
+    public void showDelayedMessage(@StringRes int resId) {
+        showDelayedMessage(ResUtils.getString(resId));
+    }
+
+    public void showDelayedMessage(@NonNull String msg) {
+        ToastUtils.showDelayedToast(msg);
     }
 }
