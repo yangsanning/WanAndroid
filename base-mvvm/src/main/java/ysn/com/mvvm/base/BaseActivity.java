@@ -49,5 +49,12 @@ public abstract class BaseActivity<ViewModel extends BaseViewModel, DataBinding 
                 }
             }
         });
+
+        viewModel.observeToastLiveData(this, new Observer<String>() {
+            @Override
+            public void onChanged(String msg) {
+                showMessage(msg);
+            }
+        });
     }
 }

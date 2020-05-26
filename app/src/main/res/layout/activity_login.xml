@@ -6,13 +6,13 @@
         <!-- alias：别名-->
         <!-- type：变量全限定类型名，包括包名-->
         <import
-            alias="LoginActivity"
-            type="ysn.com.mvvm.wanandroid.page.login.LoginActivity" />
+            alias="LoginViewModel"
+            type="ysn.com.mvvm.wanandroid.page.login.LoginViewModel" />
 
         <!-- name：变量名-->
         <variable
-            name="activity"
-            type="LoginActivity" />
+            name="vm"
+            type="LoginViewModel" />
     </data>
 
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:hint="用户名"
                 android:maxLines="1"
-                app:addTextChangedListener="@{activity.userNameTextWatcher}" />
+                android:text="@={vm.userName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +58,7 @@
                 android:hint="密码"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                app:addTextChangedListener="@{activity.pswTextWatcher}" />
+                android:text="@={vm.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -67,7 +67,7 @@
             android:layout_height="@dimen/app_item"
             android:layout_margin="@dimen/app_space_small"
             android:layout_marginTop="@dimen/app_space_big"
-            android:onClick="@{activity::login}"
+            android:onClick="@{()-> vm.login()}"
             android:text="登录" />
     </LinearLayout>
 </layout>

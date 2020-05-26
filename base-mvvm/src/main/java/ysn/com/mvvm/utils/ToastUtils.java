@@ -43,6 +43,23 @@ public class ToastUtils {
         }
     }
 
+    /**
+     * 延迟的吐司提示
+     *
+     * @param message 吐司内容
+     */
+    public static void showDelayedToast(String message) {
+        long id = Thread.currentThread().getId();
+        if (ThreadID == id) {
+            makeToast(message);
+        } else {
+            if (handler == null) {
+                handler = new Handler();
+            }
+            handler.postDelayed(() -> makeToast(message),300);
+        }
+    }
+
     public static void showNetworkError() {
         showNormalToast("请检查网络是否正常");
     }

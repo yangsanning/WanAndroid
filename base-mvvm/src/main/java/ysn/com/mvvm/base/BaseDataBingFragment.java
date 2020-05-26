@@ -10,9 +10,13 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
+
+import ysn.com.mvvm.utils.ResUtils;
+import ysn.com.mvvm.utils.ToastUtils;
 
 /**
  * @Author yangsanning
@@ -61,6 +65,14 @@ public abstract class BaseDataBingFragment<DataBinding extends ViewDataBinding> 
      */
     protected abstract void initView();
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (dataBinding != null) {
+            dataBinding.unbind();
+        }
+    }
+
     /**
      * 显示加载弹窗
      */
@@ -75,12 +87,20 @@ public abstract class BaseDataBingFragment<DataBinding extends ViewDataBinding> 
         mActivity.dismissLoadingDialog();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (dataBinding != null) {
-            dataBinding.unbind();
-        }
+    public void showMessage(@StringRes int resId) {
+        showMessage(ResUtils.getString(resId));
+    }
+
+    public void showMessage(@NonNull String msg) {
+        ToastUtils.showNormalToast(msg);
+    }
+
+    public void showDelayedMessage(@StringRes int resId) {
+        showDelayedMessage(ResUtils.getString(resId));
+    }
+
+    public void showDelayedMessage(@NonNull String msg) {
+        ToastUtils.showDelayedToast(msg);
     }
 
     protected void finishActivity() {
