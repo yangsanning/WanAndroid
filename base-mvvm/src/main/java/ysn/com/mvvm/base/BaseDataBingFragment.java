@@ -103,6 +103,10 @@ public abstract class BaseDataBingFragment<DataBinding extends ViewDataBinding> 
         ToastUtils.showDelayedToast(msg);
     }
 
+    protected <T> T activityCast() {
+        return (T) mActivity;
+    }
+
     protected void finishActivity() {
         finishActivity(mActivity);
     }

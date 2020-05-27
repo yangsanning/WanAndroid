@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="navigation_icon">
+        <item>@drawable/ic_interview_guide</item>
+        <item>@drawable/ic_every_day_question</item>
+        <item>@drawable/ic_common_tools</item>
+        <item>@drawable/ic_official_account</item>
+    </array>
+
+    <string-array name="navigation_text">
+        <item>面试指南</item>
+        <item>每日一问</item>
+        <item>常用工具</item>
+        <item>公众号</item>
+    </string-array>
+</resources>

@@ -27,6 +27,7 @@ public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBind
     protected Context context;
     protected int variableId;
     protected OnItemClickListener<Data> onItemClickListener;
+    protected OnItemLongClickListener<Data> onItemLongClickListener;
 
     public BaseRecyclerAdapter(@LayoutRes int layoutId, int variableId) {
         this.layoutId = layoutId;
@@ -57,6 +58,7 @@ public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBind
         onBindViewHolder(itemData, binding, position);
         // 迫使数据立即绑定
         binding.executePendingBindings();
+
         // 设置点击事件
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,10 +67,14 @@ public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBind
                     onItemClickListener.onItemClick(itemData, position);
                 }
             });
+        }
+
+        // 设置长按事件
+        if (onItemLongClickListener != null) {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    return onItemClickListener.onItemLongClick(itemData, position);
+                    return onItemLongClickListener.onItemLongClick(itemData, position);
                 }
             });
         }
@@ -84,6 +90,10 @@ public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBind
      * 绑定数据
      */
     protected void onBindViewHolder(Data data, DataBinding binding, int position) {
+    }
+
+    public List<Data> getData() {
+        return data;
     }
 
     /**
@@ -114,9 +124,16 @@ public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBind
     }
 
     /**
-     * 设置Item 长按、点击事件
+     * 设置Item 点击事件
      */
-    public void setOnItemListener(OnItemClickListener<Data> listener) {
-        this.onItemClickListener = listener;
+    public void setOnItemClickListener(OnItemClickListener<Data> onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    /**
+     * 设置Item 长按事件
+     */
+    public void setOnItemLongClickListener(OnItemLongClickListener<Data> onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
     }
 }

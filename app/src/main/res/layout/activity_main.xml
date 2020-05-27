@@ -1,18 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ysn="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ysn.com.demo.bottommenulayout.BottomMenuLayout
+            android:id="@+id/bottom_menu_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_menu_layout_height"
+            android:background="@color/app_white">
+
+            <ysn.com.demo.bottommenulayout.MenuItemView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                ysn:miv_icon_height="@dimen/px_50"
+                ysn:miv_icon_normal="@drawable/menu_item_home_normal"
+                ysn:miv_icon_selected="@drawable/menu_item_home_selected"
+                ysn:miv_icon_width="@dimen/px_50"
+                ysn:miv_text="@string/menu_item_home"
+                ysn:miv_text_color_normal="@color/menu_item_normal"
+                ysn:miv_text_color_selected="@color/menu_item_selected"
+                ysn:miv_text_size="@dimen/pt20" />
+
+            <ysn.com.demo.bottommenulayout.MenuItemView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                ysn:miv_icon_height="@dimen/px_50"
+                ysn:miv_icon_normal="@drawable/menu_item_home_normal"
+                ysn:miv_icon_selected="@drawable/menu_item_home_selected"
+                ysn:miv_icon_width="@dimen/px_50"
+                ysn:miv_text="@string/menu_item_system"
+                ysn:miv_text_color_normal="@color/menu_item_normal"
+                ysn:miv_text_color_selected="@color/menu_item_selected"
+                ysn:miv_text_size="@dimen/pt20" />
+
+            <ysn.com.demo.bottommenulayout.MenuItemView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                ysn:miv_icon_height="@dimen/px_50"
+                ysn:miv_icon_normal="@drawable/menu_item_home_normal"
+                ysn:miv_icon_selected="@drawable/menu_item_home_selected"
+                ysn:miv_icon_width="@dimen/px_50"
+                ysn:miv_text="@string/menu_item_project"
+                ysn:miv_text_color_normal="@color/menu_item_normal"
+                ysn:miv_text_color_selected="@color/menu_item_selected"
+                ysn:miv_text_size="@dimen/pt20" />
+
+            <ysn.com.demo.bottommenulayout.MenuItemView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                ysn:miv_icon_height="@dimen/px_50"
+                ysn:miv_icon_normal="@drawable/menu_item_home_normal"
+                ysn:miv_icon_selected="@drawable/menu_item_home_selected"
+                ysn:miv_icon_width="@dimen/px_50"
+                ysn:miv_text="@string/menu_item_my"
+                ysn:miv_text_color_normal="@color/menu_item_normal"
+                ysn:miv_text_color_selected="@color/menu_item_selected"
+                ysn:miv_text_size="@dimen/pt20" />
+        </ysn.com.demo.bottommenulayout.BottomMenuLayout>
+    </LinearLayout>
+</layout>

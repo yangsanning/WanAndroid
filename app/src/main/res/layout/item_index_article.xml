@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ysn="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <import type="ysn.com.mvvm.utils.ValidatorUtils" />
+
+        <import type="ysn.com.mvvm.utils.TimeUtils" />
+
+        <variable
+            name="article"
+            type="ysn.com.mvvm.wanandroid.bean.Article" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/app_space_big"
+        android:paddingTop="@dimen/app_space_small"
+        android:paddingEnd="@dimen/app_space_big"
+        android:paddingBottom="@dimen/app_space_small">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:text="@{Html.fromHtml(article.title), default= 文本}"
+            android:textColor="@color/app_text_title"
+            android:textSize="@dimen/pt34" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_18"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.gcssloop.widget.RCImageView
+                android:layout_width="@dimen/px_30"
+                android:layout_height="@dimen/px_30"
+                android:src="@drawable/ic_avatar"
+                ysn:round_as_circle="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_space_small"
+                android:text="@{ValidatorUtils.isBlank(article.author)? article.shareUser:article.author}"
+                android:textColor="@color/app_text_summary"
+                android:textSize="@dimen/pt24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_space_small"
+                android:text="@{TimeUtils.formatLong2Today(article.shareDate)}"
+                android:textColor="@color/app_text_summary"
+                android:textSize="@dimen/pt24" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
