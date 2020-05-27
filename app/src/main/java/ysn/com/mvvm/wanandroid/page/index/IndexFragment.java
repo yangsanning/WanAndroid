@@ -1,6 +1,7 @@
 package ysn.com.mvvm.wanandroid.page.index;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,10 +21,13 @@ import ysn.com.mvvm.utils.ImageUtils;
 import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.mvvm.wanandroid.BR;
 import ysn.com.mvvm.wanandroid.R;
+import ysn.com.mvvm.wanandroid.bean.Article;
 import ysn.com.mvvm.wanandroid.bean.Banner;
 import ysn.com.mvvm.wanandroid.bean.Navigation;
 import ysn.com.mvvm.wanandroid.databinding.FragmentIndexBinding;
+import ysn.com.mvvm.wanandroid.databinding.ItemIndexArticleBinding;
 import ysn.com.mvvm.wanandroid.databinding.ItemIndexNavigationBinding;
+import ysn.com.mvvm.wanandroid.widget.decoration.DefaultItemDecoration;
 import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
 import ysn.com.mvvm.widget.adapter.OnItemClickListener;
 
@@ -60,6 +64,7 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         bannerView.setAdapter(new IndexBannerAdapter()).create();
 
         initNavigation();
+        initArticle();
     }
 
     private void initNavigation() {
@@ -78,6 +83,17 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         });
         dataBinding.navigationRecyclerView.setLayoutManager(new GridLayoutManager(activityCast(), 4));
         dataBinding.navigationRecyclerView.setAdapter(navigationAdapter);
+
+    }
+
+    private void initArticle() {
+        dataBinding.articleSuperRecyclerView
+                .setOnRefreshListener(() -> viewModel.getArticleList(0))
+                .setEnableRefresh(false)
+                .setOnLoadListener(pageNum -> viewModel.getArticleList(pageNum))
+                .addItemDecoration(new DefaultItemDecoration()
+                        .addTopDecoration(0, ResUtils.getDimension(R.dimen.app_space_small)))
+                .setAdapter(new ArticleAdapter());
     }
 
     @Override
@@ -85,7 +101,7 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         viewModel.getBannerResultLiveData().observe(this, bannerResult ->
                 bannerView.refreshData(bannerResult.getData()));
 
-        viewModel.init();
+        viewModel.init(dataBinding.articleSuperRecyclerView.getSuperRecyclerView());
     }
 
     @Override
@@ -135,6 +151,18 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
 
         public NavigationAdapter(List<Navigation> data) {
             super(data, R.layout.item_index_navigation, BR.navigation);
+        }
+    }
+
+    private static class ArticleAdapter extends BaseRecyclerAdapter<Article, ItemIndexArticleBinding> {
+
+        public ArticleAdapter() {
+            super(R.layout.item_index_article, BR.article);
+        }
+
+        @Override
+        protected void onBindViewHolder(Article article, ItemIndexArticleBinding binding, int position) {
+            super.onBindViewHolder(article, binding, position);
         }
     }
 }

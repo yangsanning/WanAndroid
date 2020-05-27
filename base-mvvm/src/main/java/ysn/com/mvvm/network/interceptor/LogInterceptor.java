@@ -35,7 +35,7 @@ public class LogInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Response response = chain.proceed(request);
-        if (BuildConfig.DEBUG && !"get".equalsIgnoreCase(request.method())) {
+        if (BuildConfig.DEBUG) {
             printRequestLog(request);
 
             MediaType mediaType = response.body().contentType();

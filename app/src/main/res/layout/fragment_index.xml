@@ -22,7 +22,7 @@
             <com.gcssloop.widget.RCImageView
                 android:layout_width="@dimen/px_64"
                 android:layout_height="@dimen/px_64"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_avatar"
                 ysn:round_as_circle="true" />
 
             <TextView
@@ -40,26 +40,37 @@
                 android:src="@drawable/ic_search" />
         </LinearLayout>
 
-        <com.zhpan.bannerview.BannerViewPager
-            android:id="@+id/banner_view"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_320"
-            ysn:bvp_auto_play="true"
-            ysn:bvp_can_loop="true"
-            ysn:bvp_indicator_visibility="gone"
-            ysn:bvp_interval="3000"
-            ysn:bvp_scroll_duration="800" />
+            android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/navigation_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_152"
-            android:background="@color/app_white"
-            android:overScrollMode="never" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/article_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <com.zhpan.bannerview.BannerViewPager
+                    android:id="@+id/banner_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_320"
+                    ysn:bvp_auto_play="true"
+                    ysn:bvp_can_loop="true"
+                    ysn:bvp_indicator_visibility="gone"
+                    ysn:bvp_interval="3000"
+                    ysn:bvp_scroll_duration="800" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/navigation_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_152"
+                    android:background="@color/app_white"
+                    android:overScrollMode="never" />
+
+                <ysn.com.mvvm.widget.recycler_view.SuperRecyclerView
+                    android:id="@+id/article_super_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

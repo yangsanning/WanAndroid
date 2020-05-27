@@ -4,11 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
@@ -88,15 +86,14 @@ public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBind
         return data.size();
     }
 
-    @BindingAdapter("android:src")
-    public static void setSrc(ImageView view, int resId) {
-        view.setImageResource(resId);
-    }
-
     /**
      * 绑定数据
      */
     protected void onBindViewHolder(Data data, DataBinding binding, int position) {
+    }
+
+    public List<Data> getData() {
+        return data;
     }
 
     /**

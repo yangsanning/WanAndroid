@@ -30,6 +30,9 @@ public class MyApplication extends Application {
     private void initialize() {
         initLogCat();
         AppInitUtils.inject(instance);
+
+        // 刷新风格设置
+        MyAppRefreshLayoutStyle.init();
     }
 
     private void initLogCat() {
