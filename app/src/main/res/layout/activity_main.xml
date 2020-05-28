@@ -6,22 +6,60 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_bar"
+                android:background="@color/app_white"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/app_space_big"
+                android:paddingEnd="@dimen/app_space_big"
+                ysn:layout_scrollFlags="scroll|enterAlways">
+
+                <com.gcssloop.widget.RCImageView
+                    android:layout_width="@dimen/px_64"
+                    android:layout_height="@dimen/px_64"
+                    android:src="@drawable/ic_avatar"
+                    ysn:round_as_circle="true" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px_50"
+                    android:layout_weight="1"
+                    android:text="@string/app_name"
+                    android:textColor="@color/app_text_title"
+                    android:textSize="@dimen/pt40" />
+
+                <ImageView
+                    android:layout_width="@dimen/px_72"
+                    android:layout_height="@dimen/px_72"
+                    android:src="@drawable/ic_search" />
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            ysn:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <ysn.com.demo.bottommenulayout.BottomMenuLayout
             android:id="@+id/bottom_menu_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_menu_layout_height"
-            android:background="@color/app_white">
+            android:layout_gravity="bottom"
+            android:background="@color/app_white"
+            ysn:layout_behavior="@string/behavior_bottom_menu">
 
             <ysn.com.demo.bottommenulayout.MenuItemView
                 android:layout_width="0dp"
@@ -75,5 +113,5 @@
                 ysn:miv_text_color_selected="@color/menu_item_selected"
                 ysn:miv_text_size="@dimen/pt20" />
         </ysn.com.demo.bottommenulayout.BottomMenuLayout>
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

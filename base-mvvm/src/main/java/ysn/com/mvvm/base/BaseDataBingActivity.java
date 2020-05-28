@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import ysn.com.mvvm.utils.ActivityUtils;
 import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.mvvm.utils.ToastUtils;
 import ysn.com.mvvm.widget.dialog.LoadingDialog;
-import ysn.com.mvvm.utils.ActivityUtils;
 
 /**
  * @Author yangsanning
@@ -30,10 +30,8 @@ public abstract class BaseDataBingActivity<DataBinding extends ViewDataBinding> 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityUtils.getInstance().addActivity(this);
-        int layoutId = getLayoutId();
-        setContentView(layoutId);
 
-        dataBinding = initDataBinding(layoutId);
+        dataBinding = initDataBinding(getLayoutId());
         initView();
     }
 

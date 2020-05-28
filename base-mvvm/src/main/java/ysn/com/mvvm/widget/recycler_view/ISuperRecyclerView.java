@@ -23,6 +23,8 @@ public interface ISuperRecyclerView {
 
     SuperRecyclerView setEnableRefresh(boolean enabled);
 
+    SuperRecyclerView setEnableAutoLoadMore(boolean enabled);
+
     SuperRecyclerView setOnRefreshListener(SuperRecyclerView.OnRefreshListener refreshListener);
 
     SuperRecyclerView setOnLoadListener(SuperRecyclerView.OnLoadMoreListener loadMoreListener);

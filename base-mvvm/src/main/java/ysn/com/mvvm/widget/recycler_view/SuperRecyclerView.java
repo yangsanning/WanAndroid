@@ -86,6 +86,12 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
     }
 
     @Override
+    public SuperRecyclerView setEnableAutoLoadMore(boolean enabled) {
+        dataBinding.refreshLayout.setEnableAutoLoadMore(enabled);
+        return this;
+    }
+
+    @Override
     public SuperRecyclerView setOnRefreshListener(OnRefreshListener refreshListener) {
         this.refreshListener = refreshListener;
         if (refreshListener == null) {

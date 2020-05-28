@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:descendantFocusability="blocksDescendants"
+        android:overScrollMode="never"
+        ysn:srlEnableAutoLoadMore="true"
         ysn:srlEnableLoadMore="false"
         ysn:srlEnableNestedScrolling="true"
         ysn:srlEnableRefresh="false">
