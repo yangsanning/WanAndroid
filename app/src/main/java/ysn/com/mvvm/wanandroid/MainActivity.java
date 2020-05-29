@@ -2,13 +2,10 @@ package ysn.com.mvvm.wanandroid;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.google.android.material.appbar.AppBarLayout;
-
 import ysn.com.mvvm.base.BaseDataBingActivity;
-import ysn.com.mvvm.utils.AnimatorUtils;
 import ysn.com.mvvm.wanandroid.databinding.ActivityMainBinding;
-import ysn.com.mvvm.wanandroid.page.index.IndexFragment;
-import ysn.com.mvvm.wanandroid.widget.adapter.ViewPage2Adapter;
+import ysn.com.mvvm.wanandroid.utils.AppAnimatorUtils;
+import ysn.com.mvvm.wanandroid.widget.adapter.MainPageAdapter;
 
 public class MainActivity extends BaseDataBingActivity<ActivityMainBinding> {
 
@@ -30,15 +27,10 @@ public class MainActivity extends BaseDataBingActivity<ActivityMainBinding> {
     }
 
     private void initViewPager() {
-        ViewPage2Adapter viewPage2Adapter = new ViewPage2Adapter(this);
-        viewPage2Adapter.addFragment(IndexFragment.newInstance())
-                .addFragment(TestFragment.newInstance("体系"))
-                .addFragment(TestFragment.newInstance("项目"))
-                .addFragment(TestFragment.newInstance("我的"));
-        dataBinding.viewPager.setOffscreenPageLimit(viewPage2Adapter.getItemCount());
         // 禁止滑动
         dataBinding.viewPager.setUserInputEnabled(false);
-        dataBinding.viewPager.setAdapter(viewPage2Adapter);
+        dataBinding.viewPager.setAdapter(new MainPageAdapter(this));
+        dataBinding.viewPager.setOffscreenPageLimit(dataBinding.viewPager.getAdapter().getItemCount());
     }
 
     private void initBottomMenuLayout() {
@@ -65,16 +57,9 @@ public class MainActivity extends BaseDataBingActivity<ActivityMainBinding> {
         // 判断按钮是否隐藏
         if (dataBinding.bottomMenuLayout.getTranslationY() > 0) {
             if (dataBinding.bottomMenuLayout.getCurrentPosition() == 0) {
-                CoordinatorLayout.Behavior behavior = appBarLayoutParams.getBehavior();
-                if (behavior instanceof AppBarLayout.Behavior) {
-                    AppBarLayout.Behavior appBarLayoutBehavior = (AppBarLayout.Behavior) behavior;
-                    AnimatorUtils.ofFloat((animation, value) -> {
-                        appBarLayoutBehavior.setTopAndBottomOffset((int) value);
-                    }, 500, -appBarHeight, 0);
-                }
+                AppAnimatorUtils.showMainAppBar(appBarLayoutParams.getBehavior(), appBarHeight);
             }
-            float translationY = dataBinding.bottomMenuLayout.getTranslationY();
-            AnimatorUtils.translationY(dataBinding.bottomMenuLayout, translationY, 0);
+            AppAnimatorUtils.showMainBottomMenu(dataBinding.bottomMenuLayout);
         } else if ((System.currentTimeMillis() - exitTime) > 2000) {
             showMessage("再按一次退出程序");
             exitTime = System.currentTimeMillis();

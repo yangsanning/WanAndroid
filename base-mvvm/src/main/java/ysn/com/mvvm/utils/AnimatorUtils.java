@@ -3,6 +3,7 @@ package ysn.com.mvvm.utils;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Interpolator;
 
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 
@@ -17,23 +18,34 @@ public class AnimatorUtils {
     public static final LinearOutSlowInInterpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new LinearOutSlowInInterpolator();
     public static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
 
-    public static void translationY(final View view, float start, float end) {
-        final ValueAnimator animator = ValueAnimator.ofFloat(start, end);
-        view.setVisibility(View.VISIBLE);
-        animator.addUpdateListener(valueAnimator -> view.setTranslationY((Float) animator.getAnimatedValue()));
-        animator.setDuration(200);
-        animator.setInterpolator(FAST_OUT_SLOW_IN_INTERPOLATOR);
-        animator.start();
+    /**
+     * 改变Y轴坐标
+     *
+     * @param view         需要改变的控件
+     * @param duration     动画持续时间
+     * @param interpolator 插值器
+     * @param values       变化值
+     */
+    public static void translationY(final View view, long duration, Interpolator interpolator, float... values) {
+        ofFloat((animation, value) -> view.setTranslationY(value), duration, interpolator, values);
     }
 
-    public static void ofFloat(OnUpdateListener onUpdateListener, long duration, float... values) {
+    /**
+     * ofFloat
+     *
+     * @param onUpdateListener Update 监听
+     * @param duration         动画持续时间
+     * @param interpolator     插值器
+     * @param values           变化值
+     */
+    public static void ofFloat(OnUpdateListener onUpdateListener, long duration, Interpolator interpolator, float... values) {
         final ValueAnimator animator = ValueAnimator.ofFloat(values);
         animator.addUpdateListener(valueAnimator -> {
             float value = (Float) animator.getAnimatedValue();
             onUpdateListener.onAnimationUpdate(animator, value);
         });
         animator.setDuration(duration);
-        animator.setInterpolator(ACCELERATE_INTERPOLATOR);
+        animator.setInterpolator(interpolator);
         animator.start();
     }
 
