@@ -7,7 +7,7 @@
         <!-- type：变量全限定类型名，包括包名-->
         <import
             alias="LoginViewModel"
-            type="ysn.com.mvvm.wanandroid.page.login.LoginViewModel" />
+            type="ysn.com.wanandroid.page.login.LoginViewModel" />
 
         <!-- name：变量名-->
         <variable
