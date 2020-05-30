@@ -1,4 +1,4 @@
-package ysn.com.mvvm.wanandroid.bean;
+package ysn.com.mvvm.wanandroid.model.bean;
 
 /**
  * @Author yangsanning

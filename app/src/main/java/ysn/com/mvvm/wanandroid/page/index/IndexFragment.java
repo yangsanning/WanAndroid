@@ -1,7 +1,6 @@
 package ysn.com.mvvm.wanandroid.page.index;
 
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -21,9 +20,9 @@ import ysn.com.mvvm.utils.ImageUtils;
 import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.mvvm.wanandroid.BR;
 import ysn.com.mvvm.wanandroid.R;
-import ysn.com.mvvm.wanandroid.bean.Article;
-import ysn.com.mvvm.wanandroid.bean.Banner;
-import ysn.com.mvvm.wanandroid.bean.Navigation;
+import ysn.com.mvvm.wanandroid.model.bean.Article;
+import ysn.com.mvvm.wanandroid.model.bean.Banner;
+import ysn.com.mvvm.wanandroid.model.bean.Navigation;
 import ysn.com.mvvm.wanandroid.databinding.FragmentIndexBinding;
 import ysn.com.mvvm.wanandroid.databinding.ItemIndexArticleBinding;
 import ysn.com.mvvm.wanandroid.databinding.ItemIndexNavigationBinding;

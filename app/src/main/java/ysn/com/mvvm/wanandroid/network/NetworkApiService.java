@@ -8,9 +8,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import ysn.com.mvvm.wanandroid.bean.Article;
-import ysn.com.mvvm.wanandroid.bean.Banner;
-import ysn.com.mvvm.wanandroid.bean.User;
+import ysn.com.mvvm.wanandroid.model.bean.Article;
+import ysn.com.mvvm.wanandroid.model.bean.Banner;
+import ysn.com.mvvm.wanandroid.model.bean.User;
 
 /**
  * @Author yangsanning

@@ -5,7 +5,7 @@
 
         <variable
             name="navigation"
-            type="ysn.com.mvvm.wanandroid.bean.Navigation" />
+            type="ysn.com.mvvm.wanandroid.model.bean.Navigation" />
     </data>
 
     <LinearLayout

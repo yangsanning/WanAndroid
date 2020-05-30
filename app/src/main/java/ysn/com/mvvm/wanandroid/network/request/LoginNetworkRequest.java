@@ -3,7 +3,7 @@ package ysn.com.mvvm.wanandroid.network.request;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import ysn.com.mvvm.network.BaseNetworkCallback;
-import ysn.com.mvvm.wanandroid.bean.User;
+import ysn.com.mvvm.wanandroid.model.bean.User;
 import ysn.com.mvvm.network.BaseNetworkRequest;
 import ysn.com.mvvm.wanandroid.network.NetworkClient;
 

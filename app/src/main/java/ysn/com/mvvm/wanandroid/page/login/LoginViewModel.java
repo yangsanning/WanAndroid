@@ -10,7 +10,7 @@ import ysn.com.mvvm.lifecycle.ResultLiveData;
 import ysn.com.mvvm.network.BaseNetworkCallback;
 import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.mvvm.wanandroid.R;
-import ysn.com.mvvm.wanandroid.bean.User;
+import ysn.com.mvvm.wanandroid.model.bean.User;
 import ysn.com.mvvm.wanandroid.network.request.LoginNetworkRequest;
 
 /**

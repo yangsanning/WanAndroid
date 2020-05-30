@@ -1,6 +1,4 @@
-package ysn.com.mvvm.wanandroid.bean;
-
-import java.util.List;
+package ysn.com.mvvm.wanandroid.model.bean;
 
 /**
  * @Author yangsanning

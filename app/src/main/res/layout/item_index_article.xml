@@ -12,7 +12,7 @@
 
         <variable
             name="article"
-            type="ysn.com.mvvm.wanandroid.bean.Article" />
+            type="ysn.com.mvvm.wanandroid.model.bean.Article" />
     </data>
 
     <LinearLayout

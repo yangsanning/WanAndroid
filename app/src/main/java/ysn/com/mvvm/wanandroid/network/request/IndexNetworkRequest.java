@@ -6,8 +6,8 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import ysn.com.mvvm.network.BaseNetworkCallback;
 import ysn.com.mvvm.network.BaseNetworkRequest;
-import ysn.com.mvvm.wanandroid.bean.Article;
-import ysn.com.mvvm.wanandroid.bean.Banner;
+import ysn.com.mvvm.wanandroid.model.bean.Article;
+import ysn.com.mvvm.wanandroid.model.bean.Banner;
 import ysn.com.mvvm.wanandroid.network.NetworkClient;
 import ysn.com.mvvm.wanandroid.network.NetworkResultList;
 
