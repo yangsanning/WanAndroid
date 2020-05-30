@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import ysn.com.mvvm.base.BaseActivity;
 import ysn.com.mvvm.wanandroid.R;
 import ysn.com.mvvm.wanandroid.databinding.ActivityLoginBinding;
+import ysn.com.mvvm.wanandroid.network.request.LoginNetworkRequest;
 import ysn.com.mvvm.wanandroid.utils.PageUtils;
 
 /**
@@ -34,5 +35,11 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
             PageUtils.startMainActivity(LoginActivity.this);
             finish();
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LoginNetworkRequest.destroy();
     }
 }

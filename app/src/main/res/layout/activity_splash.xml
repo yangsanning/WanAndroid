@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ysn="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/px_100"
+            ysn:shimmer_auto_start="true"
+            ysn:shimmer_base_alpha="0.5"
+            ysn:shimmer_base_color="@color/app_blue"
+            ysn:shimmer_colored="true"
+            ysn:shimmer_duration="1000"
+            ysn:shimmer_highlight_color="@color/app_red_99"
+            ysn:shimmer_repeat_delay="800">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.2"
+                android:text="@string/app_summary"
+                android:textColor="@color/app_text_title"
+                android:textSize="@dimen/pt32" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </FrameLayout>
+</layout>

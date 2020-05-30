@@ -45,6 +45,9 @@ dependencies {
     api rootProject.ext.glideLibs
     annotationProcessor rootProject.ext.glideCompiler
 
+    // 自己的库
+    api 'com.github.yangsanning:StatusBarUtils:1.0.1'                // 状态栏工具
+
     // Other
     api 'com.lazy.logging:library:1.3.1'                             // 日志输出 Logcat
     api 'com.blankj:utilcode:1.13.10'

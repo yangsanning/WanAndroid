@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import ysn.com.mvvm.wanandroid.MainActivity;
+import ysn.com.mvvm.wanandroid.page.login.LoginActivity;
 
 /**
  * @Author yangsanning
@@ -12,6 +13,11 @@ import ysn.com.mvvm.wanandroid.MainActivity;
  * @Date 2020/5/23
  */
 public class PageUtils {
+
+    public static void startLoginActivity(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
+    }
 
     public static void startMainActivity(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);

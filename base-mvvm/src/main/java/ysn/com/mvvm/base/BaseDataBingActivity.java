@@ -14,6 +14,7 @@ import ysn.com.mvvm.utils.ActivityUtils;
 import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.mvvm.utils.ToastUtils;
 import ysn.com.mvvm.widget.dialog.LoadingDialog;
+import ysn.com.statusbar.StatusBarUtils;
 
 /**
  * @Author yangsanning
@@ -29,6 +30,7 @@ public abstract class BaseDataBingActivity<DataBinding extends ViewDataBinding> 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtils.setDarkMode(this);
         ActivityUtils.getInstance().addActivity(this);
 
         dataBinding = initDataBinding(getLayoutId());

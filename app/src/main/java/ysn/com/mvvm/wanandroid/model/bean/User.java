@@ -1,11 +1,17 @@
 package ysn.com.mvvm.wanandroid.model.bean;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * @Author yangsanning
  * @ClassName User
  * @Description 一句话概括作用
  * @Date 2020/5/23
  */
+@Entity(tableName = "User")
 public class User {
 
     /**
@@ -23,94 +29,35 @@ public class User {
      * username : 582959883
      */
 
-    private int id;
-    private boolean admin;
-    private String email;
-    private String icon;
-    private String nickname;
-    private String password;
-    private String publicName;
-    private String token;
-    private int type;
-    private String username;
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    @NonNull
+    public String id;
 
-    public boolean isAdmin() {
-        return admin;
-    }
+    @ColumnInfo(name = "admin")
+    public boolean admin;
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
+    @ColumnInfo(name = "email")
+    public String email;
 
-    public String getEmail() {
-        return email;
-    }
+    @ColumnInfo(name = "icon")
+    public String icon;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @ColumnInfo(name = "nickname")
+    public String nickname;
 
-    public String getIcon() {
-        return icon;
-    }
+    @ColumnInfo(name = "password")
+    public String password;
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+    @ColumnInfo(name = "publicName")
+    public String publicName;
 
-    public int getId() {
-        return id;
-    }
+    @ColumnInfo(name = "token")
+    public String token;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ColumnInfo(name = "type")
+    public int type;
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPublicName() {
-        return publicName;
-    }
-
-    public void setPublicName(String publicName) {
-        this.publicName = publicName;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @ColumnInfo(name = "username")
+    public String username;
 }

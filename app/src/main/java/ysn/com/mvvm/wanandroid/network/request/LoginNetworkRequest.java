@@ -3,9 +3,10 @@ package ysn.com.mvvm.wanandroid.network.request;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import ysn.com.mvvm.network.BaseNetworkCallback;
-import ysn.com.mvvm.wanandroid.model.bean.User;
 import ysn.com.mvvm.network.BaseNetworkRequest;
+import ysn.com.mvvm.wanandroid.model.bean.User;
 import ysn.com.mvvm.wanandroid.network.NetworkClient;
+import ysn.com.mvvm.wanandroid.widget.hepler.PreferenceHelper;
 
 /**
  * @Author yangsanning
@@ -28,12 +29,17 @@ public class LoginNetworkRequest extends BaseNetworkRequest {
         return instance;
     }
 
+    public static void destroy() {
+        instance = null;
+    }
+
     /**
      * 登录
      */
     public Disposable login(String username, String password, BaseNetworkCallback<User> networkCallback) {
         Observable<User> observable = NetworkClient.get().mService
                 .login(username, password)
+                .doOnNext(userNetworkResult -> PreferenceHelper.get().login(userNetworkResult.data))
                 .map(new NetworkResultFun<>());
         return toSubscribe(observable, networkCallback);
     }

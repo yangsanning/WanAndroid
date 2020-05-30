@@ -40,8 +40,8 @@ ext {
     ]
 
     rxJavaLib = [
-            rxJava   : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
-            rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid",
+            rxJava       : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
+            rxAndroid    : "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid",
             rxLife       : "com.trello:rxlifecycle:$dependVersion.rxLife",
             rxLife_common: "com.trello:rxlifecycle-components:$dependVersion.rxLife",
     ]
