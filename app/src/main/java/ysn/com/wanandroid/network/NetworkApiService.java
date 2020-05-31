@@ -8,8 +8,10 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.model.bean.Banner;
+import ysn.com.wanandroid.model.bean.Knowledge;
 import ysn.com.wanandroid.model.bean.User;
 
 /**
@@ -35,6 +37,23 @@ public interface NetworkApiService {
     @FormUrlEncoded
     @POST("/user/login")
     Observable<NetworkResult<User>> login(@Field("username") String phone, @Field("password") String password);
+
+    /**
+     * 获取知识体系列表
+     *
+     * @return 知识体系列表
+     */
+    @GET("/tree/json")
+    Observable<NetworkResult<List<Knowledge>>> getKnowledgeList();
+
+    /**
+     * 获取首页文章列表
+     *
+     * @param page 页码
+     * @return 相应页面文章列表
+     */
+    @GET("/article/list/{page}/json")
+    Observable<NetworkResult<NetworkResultList<Article>>> getKnowledgeArticleList(@Path("page") int page, @Query("cid") int cid);
 
     /**
      * 获取首页banner

@@ -10,7 +10,9 @@ import androidx.room.TypeConverters;
 
 import java.util.prefs.Preferences;
 
+import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.model.bean.User;
+import ysn.com.wanandroid.model.dao.ArticleDao;
 import ysn.com.wanandroid.model.dao.UserDao;
 
 /**
@@ -19,7 +21,7 @@ import ysn.com.wanandroid.model.dao.UserDao;
  * @Description 数据库
  * @Date 2020/5/30
  */
-@Database(entities = {User.class},
+@Database(entities = {User.class, Article.class},
         version = 1, exportSchema = false)
 @TypeConverters({RoomConversionFactory.class})
 public abstract class RoomDatabaseHelper extends RoomDatabase {
@@ -68,4 +70,6 @@ public abstract class RoomDatabaseHelper extends RoomDatabase {
     }
 
     public abstract UserDao getUserDao();
+
+    public abstract ArticleDao getArticleDao();
 }

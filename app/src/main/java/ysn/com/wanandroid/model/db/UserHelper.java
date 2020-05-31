@@ -1,4 +1,4 @@
-package ysn.com.wanandroid.model;
+package ysn.com.wanandroid.model.db;
 
 import androidx.lifecycle.LiveData;
 
@@ -7,7 +7,6 @@ import java.util.prefs.Preferences;
 import ysn.com.wanandroid.app.MyApplication;
 import ysn.com.wanandroid.model.bean.User;
 import ysn.com.wanandroid.model.dao.UserDao;
-import ysn.com.wanandroid.model.db.RoomDatabaseHelper;
 import ysn.com.wanandroid.widget.hepler.PreferenceHelper;
 
 /**

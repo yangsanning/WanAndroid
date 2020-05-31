@@ -25,7 +25,6 @@ public class MainPageAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Logcat.d("test", "11111111111");
         switch (position) {
             case 0:
                 return IndexFragment.newInstance();
