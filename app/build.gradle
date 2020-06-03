@@ -27,8 +27,8 @@ android {
     }
 
     //启用DataBinding
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding = true
     }
 }
 
