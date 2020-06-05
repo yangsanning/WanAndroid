@@ -1,7 +1,9 @@
 package ysn.com.mvvm.widget.adapter;
 
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -12,7 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public final class BaseViewHolder extends RecyclerView.ViewHolder {
 
+    public ItemViewManager itemViewManager;
+
     public BaseViewHolder(View itemView) {
         super(itemView);
+    }
+
+    public BaseViewHolder(@NonNull ViewGroup parent, @NonNull ItemViewManager itemViewManager) {
+        super(itemViewManager.getItemView(parent));
+        this.itemViewManager = itemViewManager;
     }
 }

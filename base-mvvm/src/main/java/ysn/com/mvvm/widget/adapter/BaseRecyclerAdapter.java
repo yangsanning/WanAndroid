@@ -20,7 +20,7 @@ import java.util.List;
  * @Description 结合 DataBinding 的 RecyclerView Adapter
  * @Date 2020/5/26
  */
-public abstract class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBinding> extends RecyclerView.Adapter<BaseViewHolder> {
+public class BaseRecyclerAdapter<Data, DataBinding extends ViewDataBinding> extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<Data> data;
     private int layoutId;

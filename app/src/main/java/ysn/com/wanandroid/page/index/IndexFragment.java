@@ -18,17 +18,15 @@ import java.util.List;
 import ysn.com.mvvm.base.BaseLazyFragment;
 import ysn.com.mvvm.utils.ImageUtils;
 import ysn.com.mvvm.utils.ResUtils;
+import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
 import ysn.com.wanandroid.BR;
 import ysn.com.wanandroid.R;
+import ysn.com.wanandroid.databinding.FragmentIndexBinding;
+import ysn.com.wanandroid.databinding.ItemIndexArticleBinding;
 import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.model.bean.Banner;
 import ysn.com.wanandroid.model.bean.Navigation;
-import ysn.com.wanandroid.databinding.FragmentIndexBinding;
-import ysn.com.wanandroid.databinding.ItemIndexArticleBinding;
-import ysn.com.wanandroid.databinding.ItemIndexNavigationBinding;
 import ysn.com.wanandroid.widget.decoration.DefaultItemDecoration;
-import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
-import ysn.com.mvvm.widget.adapter.OnItemClickListener;
 
 /**
  * @Author yangsanning
@@ -73,16 +71,9 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         for (int i = 0; i < icons.length; i++) {
             navigationList.add(new Navigation(icons[i], texts[i]));
         }
-        NavigationAdapter navigationAdapter = new NavigationAdapter(navigationList);
-        navigationAdapter.setOnItemClickListener(new OnItemClickListener<Navigation>() {
-            @Override
-            public void onItemClick(Navigation navigation, int position) {
-                // todo: 跳转相应页面
-            }
-        });
-        dataBinding.navigationRecyclerView.setLayoutManager(new GridLayoutManager(activityCast(), 4));
-        dataBinding.navigationRecyclerView.setAdapter(navigationAdapter);
 
+        dataBinding.navigationRecyclerView.setLayoutManager(new GridLayoutManager(activityCast(), 4));
+        dataBinding.navigationRecyclerView.setAdapter(new BaseRecyclerAdapter<>(navigationList, R.layout.item_index_navigation, BR.navigation));
     }
 
     private void initArticle() {
@@ -143,13 +134,6 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         public void bindData(Banner data, int position, int pageSize) {
             ImageView imageView = findView(R.id.index_banner_item_image);
             ImageUtils.loadImage(imageView.getContext(), data.getImagePath(), imageView);
-        }
-    }
-
-    private static class NavigationAdapter extends BaseRecyclerAdapter<Navigation, ItemIndexNavigationBinding> {
-
-        public NavigationAdapter(List<Navigation> data) {
-            super(data, R.layout.item_index_navigation, BR.navigation);
         }
     }
 
