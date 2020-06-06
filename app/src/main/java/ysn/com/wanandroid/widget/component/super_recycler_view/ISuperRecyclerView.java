@@ -1,11 +1,13 @@
-package ysn.com.mvvm.widget.recycler_view;
+package ysn.com.wanandroid.widget.component.super_recycler_view;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import io.reactivex.annotations.NonNull;
-import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
+import ysn.com.mvvm.widget.adapter.BaseEmptyRecyclerAdapter;
+import ysn.com.mvvm.widget.adapter.ItemViewManager;
 
 /**
  * @Author yangsanning
@@ -19,7 +21,11 @@ public interface ISuperRecyclerView {
 
     SuperRecyclerView addItemDecoration(RecyclerView.ItemDecoration decor);
 
-    SuperRecyclerView setAdapter(BaseRecyclerAdapter adapter);
+    SuperRecyclerView setAdapter(BaseEmptyRecyclerAdapter adapter);
+
+    <Data, DataBinding extends ViewDataBinding> SuperRecyclerView registerEmpty(ItemViewManager<Data, DataBinding> itemViewManager);
+
+    SuperRecyclerView register(Class<?> cls, ItemViewManager itemViewManager);
 
     SuperRecyclerView setEnableRefresh(boolean enabled);
 
@@ -28,6 +34,12 @@ public interface ISuperRecyclerView {
     SuperRecyclerView setOnRefreshListener(SuperRecyclerView.OnRefreshListener refreshListener);
 
     SuperRecyclerView setOnLoadListener(SuperRecyclerView.OnLoadMoreListener loadMoreListener);
+
+    SuperRecyclerView showLoading();
+
+    SuperRecyclerView showError();
+
+    SuperRecyclerView showEmpty();
 
     SuperRecyclerView refreshFailure();
 

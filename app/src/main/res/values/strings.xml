@@ -4,6 +4,8 @@
 
     <string name="network_exception">请检查网络是否正常</string>
     <string name="text_permission_denied">权限不足</string>
+    <string name="text_loading_error">加载失败，点击重试</string>
+    <string name="text_loading_empty">暂无内容</string>
 
     <string name="text_user_name_not_null">用户名不能为空</string>
     <string name="text_pwd_not_null">密码不能为空</string>

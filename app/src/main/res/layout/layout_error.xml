@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="error"
+            type="ysn.com.mvvm.widget.adapter.BaseEmptyRecyclerAdapter.EmptyData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/px_15">
+
+        <View
+            android:layout_width="@dimen/px_160"
+            android:layout_height="@dimen/px_99"
+            android:background="@drawable/ic_error" />
+
+        <View
+            android:layout_width="@dimen/px_178"
+            android:layout_height="@dimen/px_23"
+            android:layout_marginTop="@dimen/pt34"
+            android:alpha="0.05"
+            android:background="@drawable/bg_empty_oval" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_45"
+            android:includeFontPadding="false"
+            android:text="@string/text_loading_error"
+            android:textColor="@color/app_text_hint"
+            android:textSize="@dimen/pt32" />
+    </LinearLayout>
+</layout>

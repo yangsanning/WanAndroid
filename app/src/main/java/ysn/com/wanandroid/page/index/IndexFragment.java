@@ -91,7 +91,7 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         viewModel.getBannerResultLiveData().observe(this, bannerResult ->
                 bannerView.refreshData(bannerResult.getData()));
 
-        viewModel.init(dataBinding.articleSuperRecyclerView.getSuperRecyclerView());
+        viewModel.init(dataBinding.articleRecyclerView.getSuperRecyclerView());
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class BaseMultiRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private List<Object> datas;
+    protected List<Object> datas;
     protected MultiItemTypeManager multiItemTypeManager;
 
     public BaseMultiRecyclerAdapter() {
@@ -60,7 +60,11 @@ public class BaseMultiRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
         return type;
     }
 
-    private Object getData(int position) {
+    public boolean isEmpty() {
+        return datas.isEmpty();
+    }
+
+    public Object getData(int position) {
         return datas.get(position);
     }
 
@@ -97,13 +101,15 @@ public class BaseMultiRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
      * 为数据源注册 ItemView 的资源管理器 {@link ItemViewManager}
      * 通过{@link MultiItemTypeManager}管理不同的 {@link ItemViewManager}
      *
-     * @param cls             数据源class
-     * @param itemViewManager ItemView 的资源管理器
      * @param <Data>          数据
      * @param <DataBinding>   ViewHolder
+     * @param cls             数据源class
+     * @param itemViewManager ItemView 的资源管理器
+     * @return
      */
-    public <Data, DataBinding extends ViewDataBinding> void register(@NonNull Class<Data> cls,
-                                                                     @NonNull ItemViewManager<Data, DataBinding> itemViewManager) {
+    public <Data, DataBinding extends ViewDataBinding> BaseMultiRecyclerAdapter register(
+            @NonNull Class<Data> cls, @NonNull ItemViewManager<Data, DataBinding> itemViewManager) {
         multiItemTypeManager.register(cls, itemViewManager);
+        return this;
     }
 }

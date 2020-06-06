@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'                        // facebook 微光(加载)
     implementation 'com.gcssloop.widget:rclayout:1.8.1'                        // 圆角布局
     implementation 'com.github.zhpanvip:BannerViewPager:3.1.2'                 // Banner
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'          // 下拉刷新控件
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

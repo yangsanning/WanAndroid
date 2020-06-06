@@ -1,20 +1,24 @@
-package ysn.com.mvvm.widget.recycler_view;
+package ysn.com.wanandroid.widget.component.super_recycler_view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ysn.com.mvvm.base.R;
-import ysn.com.mvvm.base.databinding.ViewSuperRecyclerViewBinding;
-import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
+import ysn.com.mvvm.widget.adapter.BaseEmptyRecyclerAdapter;
+import ysn.com.mvvm.widget.adapter.ItemViewManager;
+import ysn.com.wanandroid.BR;
+import ysn.com.wanandroid.R;
+import ysn.com.wanandroid.databinding.ViewSuperRecyclerViewBinding;
 
 /**
  * @Author yangsanning
@@ -26,11 +30,14 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     private ViewSuperRecyclerViewBinding dataBinding;
 
-    private BaseRecyclerAdapter adapter;
+    private BaseEmptyRecyclerAdapter adapter;
 
     private int pageNum, pages;
     protected boolean enableRefresh, enableLoadMore;
     protected OnRefreshListener refreshListener;
+    private ItemViewManager loadingItemViewManager;
+    private ItemViewManager emptyItemViewManager;
+    private ItemViewManager errorItemViewManager;
 
     public SuperRecyclerView(Context context) {
         this(context, null);
@@ -56,6 +63,19 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
         dataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         dataBinding.recyclerView.setHasFixedSize(true);
+
+        loadingItemViewManager = new ItemViewManager<>(R.layout.layout_loading, BR.loading);
+        emptyItemViewManager = new ItemViewManager<>(R.layout.layout_empty, this::onBindViewHolder);
+        errorItemViewManager = new ItemViewManager<>(R.layout.layout_error, this::onBindViewHolder);
+    }
+
+    public void onBindViewHolder(ViewDataBinding viewDataBinding, BaseEmptyRecyclerAdapter.EmptyData emptyData) {
+        viewDataBinding.getRoot().setOnClickListener(v -> {
+            if (refreshListener != null) {
+                showLoading();
+                postDelayed(() -> refreshListener.onRefresh(), 500);
+            }
+        });
     }
 
     @Override
@@ -71,10 +91,31 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
     }
 
     @Override
-    public SuperRecyclerView setAdapter(BaseRecyclerAdapter adapter) {
+    public SuperRecyclerView setAdapter(BaseEmptyRecyclerAdapter adapter) {
         this.adapter = adapter;
         dataBinding.recyclerView.setAdapter(adapter);
+        adapter.setEmptyData(new BaseEmptyRecyclerAdapter.EmptyData());
+        showLoading();
         adapter.notifyDataSetChanged();
+        return this;
+    }
+
+    @Override
+    public <Data, DataBinding extends ViewDataBinding> SuperRecyclerView registerEmpty(
+            @NonNull ItemViewManager<Data, DataBinding> itemViewManager) {
+        adapter.registerEmpty(itemViewManager).setEmptyData(new BaseEmptyRecyclerAdapter.EmptyData());
+        return this;
+    }
+
+    /**
+     * 通过 itemTypeNameList 和 itemViewManagerList 两组集合对类型进行管理
+     *
+     * @param cls             数据源 class
+     * @param itemViewManager ItemView 的资源管理器
+     */
+    @Override
+    public SuperRecyclerView register(Class<?> cls, ItemViewManager itemViewManager) {
+        register(cls, itemViewManager);
         return this;
     }
 
@@ -127,10 +168,34 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
     }
 
     @Override
+    public SuperRecyclerView showLoading() {
+        adapter.getDatas().clear();
+        adapter.notifyDataSetChanged();
+        adapter.registerEmpty(loadingItemViewManager);
+        return this;
+    }
+
+    @Override
+    public SuperRecyclerView showError() {
+        adapter.registerEmpty(errorItemViewManager);
+        dataBinding.refreshLayout.setEnableRefresh(false);
+        dataBinding.refreshLayout.setEnableLoadMore(false);
+        return this;
+    }
+
+    @Override
+    public SuperRecyclerView showEmpty() {
+        adapter.registerEmpty(emptyItemViewManager);
+        dataBinding.refreshLayout.setEnableRefresh(false);
+        dataBinding.refreshLayout.setEnableLoadMore(false);
+        return this;
+    }
+
+    @Override
     public SuperRecyclerView refreshFailure() {
         dataBinding.refreshLayout.finishRefresh(false);
-        if (adapter.getData().isEmpty()) {
-            // todo: 显示空布局
+        if (adapter.getDatas().isEmpty()) {
+            showError();
         }
         return this;
     }
@@ -155,7 +220,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     @Override
     public SuperRecyclerView refreshSuccess(List data, int pageNum, int pages) {
-        adapter.setNewData(data);
+        adapter.setNewDatas(data);
         this.pageNum = pageNum;
         this.pages = pages;
         refreshLoadingLayout();
@@ -193,10 +258,10 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     protected void refreshLoadingLayout() {
         dataBinding.refreshLayout.finishRefresh(true);
-        if (adapter.getData().isEmpty()) {
-            // todo: 显示空布局
+        if (adapter.getDatas().isEmpty()) {
+            showEmpty();
         } else {
-            // todo: 设置空布局
+            adapter.registerEmpty(emptyItemViewManager);
             dataBinding.refreshLayout.setEnableRefresh(enableRefresh);
             dataBinding.refreshLayout.setEnableLoadMore(enableLoadMore);
             dataBinding.refreshLayout.setNoMoreData(false);
