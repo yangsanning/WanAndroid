@@ -43,9 +43,13 @@ public class BaseEmptyRecyclerAdapter extends BaseMultiRecyclerAdapter {
     }
 
     private void removeEmptyData() {
-        if (datas.size() == 1 && datas.get(0) instanceof EmptyData) {
+        if (isEmptyData()) {
             datas.remove(0);
         }
+    }
+
+    public boolean isEmptyData() {
+        return datas.size() == 1 && datas.get(0) instanceof EmptyData;
     }
 
     public void setEmptyData(EmptyData emptyData) {

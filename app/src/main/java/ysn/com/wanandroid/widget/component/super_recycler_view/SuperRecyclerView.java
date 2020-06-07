@@ -115,7 +115,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
      */
     @Override
     public SuperRecyclerView register(Class<?> cls, ItemViewManager itemViewManager) {
-        register(cls, itemViewManager);
+        adapter.register(cls, itemViewManager);
         return this;
     }
 
@@ -169,9 +169,10 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     @Override
     public SuperRecyclerView showLoading() {
-        adapter.getDatas().clear();
-        adapter.notifyDataSetChanged();
         adapter.registerEmpty(loadingItemViewManager);
+        adapter.notifyDataSetChanged();
+        dataBinding.refreshLayout.setEnableRefresh(false);
+        dataBinding.refreshLayout.setEnableLoadMore(false);
         return this;
     }
 

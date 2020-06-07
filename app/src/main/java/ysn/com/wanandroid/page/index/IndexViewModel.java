@@ -10,7 +10,7 @@ import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.model.bean.Banner;
 import ysn.com.wanandroid.network.NetworkResultList;
 import ysn.com.wanandroid.network.request.IndexNetworkRequest;
-import ysn.com.mvvm.widget.recycler_view.ISuperRecyclerView;
+import ysn.com.wanandroid.widget.component.super_recycler_view.ISuperRecyclerView;
 
 /**
  * @Author yangsanning

@@ -11,11 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/app_background"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/px_40"
-        android:paddingBottom="@dimen/px_40">
+        android:orientation="vertical">
 
         <View
             android:layout_width="@dimen/px_155"

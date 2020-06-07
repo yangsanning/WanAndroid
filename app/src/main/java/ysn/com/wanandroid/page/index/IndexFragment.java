@@ -18,7 +18,9 @@ import java.util.List;
 import ysn.com.mvvm.base.BaseLazyFragment;
 import ysn.com.mvvm.utils.ImageUtils;
 import ysn.com.mvvm.utils.ResUtils;
+import ysn.com.mvvm.widget.adapter.BaseEmptyRecyclerAdapter;
 import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
+import ysn.com.mvvm.widget.adapter.ItemViewManager;
 import ysn.com.wanandroid.BR;
 import ysn.com.wanandroid.R;
 import ysn.com.wanandroid.databinding.FragmentIndexBinding;
@@ -71,7 +73,6 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         for (int i = 0; i < icons.length; i++) {
             navigationList.add(new Navigation(icons[i], texts[i]));
         }
-
         dataBinding.navigationRecyclerView.setLayoutManager(new GridLayoutManager(activityCast(), 4));
         dataBinding.navigationRecyclerView.setAdapter(new BaseRecyclerAdapter<>(navigationList, R.layout.item_index_navigation, BR.navigation));
     }
@@ -83,7 +84,18 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
                 .setOnLoadListener(pageNum -> viewModel.getArticleList(pageNum))
                 .addItemDecoration(new DefaultItemDecoration()
                         .addTopDecoration(0, ResUtils.getDimension(R.dimen.app_space_small)))
-                .setAdapter(new ArticleAdapter());
+                .setAdapter(new BaseEmptyRecyclerAdapter())
+                .register(Article.class, new ItemViewManager<>(R.layout.item_index_article, this::onBindViewHolder));
+    }
+
+    public void onBindViewHolder(ItemIndexArticleBinding binding, Article article) {
+        binding.setArticle(article);
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMessage("功能开发中");
+            }
+        });
     }
 
     @Override
@@ -91,7 +103,7 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         viewModel.getBannerResultLiveData().observe(this, bannerResult ->
                 bannerView.refreshData(bannerResult.getData()));
 
-        viewModel.init(dataBinding.articleRecyclerView.getSuperRecyclerView());
+        viewModel.init(dataBinding.articleSuperRecyclerView.getSuperRecyclerView());
     }
 
     @Override
@@ -134,18 +146,6 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         public void bindData(Banner data, int position, int pageSize) {
             ImageView imageView = findView(R.id.index_banner_item_image);
             ImageUtils.loadImage(imageView.getContext(), data.getImagePath(), imageView);
-        }
-    }
-
-    private static class ArticleAdapter extends BaseRecyclerAdapter<Article, ItemIndexArticleBinding> {
-
-        public ArticleAdapter() {
-            super(R.layout.item_index_article, BR.article);
-        }
-
-        @Override
-        protected void onBindViewHolder(Article article, ItemIndexArticleBinding binding, int position) {
-            super.onBindViewHolder(article, binding, position);
         }
     }
 }
