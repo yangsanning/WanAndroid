@@ -32,8 +32,8 @@ public class BaseMultiRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolde
 
     @NonNull
     @Override
-    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
-        return new BaseViewHolder(parent, multiItemTypeManager.getItemViewManager(getData(position)));
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new BaseViewHolder(parent, multiItemTypeManager.getItemViewManager(viewType));
     }
 
     @Override
