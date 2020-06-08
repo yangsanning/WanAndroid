@@ -5,8 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.ObservableArrayMap;
+import androidx.databinding.ObservableMap;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.BaseBannerAdapter;
@@ -18,7 +21,6 @@ import java.util.List;
 import ysn.com.mvvm.base.BaseLazyFragment;
 import ysn.com.mvvm.utils.ImageUtils;
 import ysn.com.mvvm.utils.ResUtils;
-import ysn.com.mvvm.widget.adapter.BaseEmptyRecyclerAdapter;
 import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
 import ysn.com.mvvm.widget.adapter.ItemViewManager;
 import ysn.com.wanandroid.BR;
@@ -37,6 +39,10 @@ import ysn.com.wanandroid.widget.decoration.DefaultItemDecoration;
  * @Date 2020/5/25
  */
 public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentIndexBinding> {
+
+    public boolean articleEnableRefresh;
+    public RecyclerView.ItemDecoration articleItemDecoration;
+    public ObservableMap<Class, ItemViewManager> articleItemViewManagerMap = new ObservableArrayMap<>();
 
     private BannerViewPager<Banner, IndexBannerViewHolder> bannerView;
 
@@ -59,6 +65,9 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
 
     @Override
     protected void initView() {
+        dataBinding.setFragment(this);
+        dataBinding.setVm(viewModel);
+
         bannerView = dataBinding.bannerView;
         bannerView.setAdapter(new IndexBannerAdapter()).create();
 
@@ -78,24 +87,17 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
     }
 
     private void initArticle() {
-        dataBinding.articleSuperRecyclerView
-                .setOnRefreshListener(() -> viewModel.getArticleList(0))
-                .setEnableRefresh(false)
-                .setOnLoadListener(pageNum -> viewModel.getArticleList(pageNum))
-                .addItemDecoration(new DefaultItemDecoration()
-                        .addTopDecoration(0, ResUtils.getDimension(R.dimen.app_space_small)))
-                .setAdapter(new BaseEmptyRecyclerAdapter())
-                .register(Article.class, new ItemViewManager<>(R.layout.item_index_article, this::onBindViewHolder));
-    }
-
-    public void onBindViewHolder(ItemIndexArticleBinding binding, Article article) {
-        binding.setArticle(article);
-        binding.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMessage("功能开发中");
-            }
-        });
+        articleItemDecoration = new DefaultItemDecoration().addTopDecoration(0, ResUtils.getDimension(R.dimen.app_space_small));
+        articleItemViewManagerMap.put(Article.class, new ItemViewManager<Article, ItemIndexArticleBinding>
+                (R.layout.item_index_article, (binding, article) -> {
+                    binding.setArticle(article);
+                    binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showMessage("功能开发中");
+                        }
+                    });
+                }));
     }
 
     @Override
@@ -103,7 +105,7 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
         viewModel.getBannerResultLiveData().observe(this, bannerResult ->
                 bannerView.refreshData(bannerResult.getData()));
 
-        viewModel.init(dataBinding.articleSuperRecyclerView.getSuperRecyclerView());
+        viewModel.init();
     }
 
     @Override

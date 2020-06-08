@@ -10,7 +10,7 @@ import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.model.bean.Banner;
 import ysn.com.wanandroid.network.NetworkResultList;
 import ysn.com.wanandroid.network.request.IndexNetworkRequest;
-import ysn.com.wanandroid.widget.component.super_recycler_view.ISuperRecyclerView;
+import ysn.com.wanandroid.widget.component.super_recycler_view.SuperBindingResult;
 
 /**
  * @Author yangsanning
@@ -21,10 +21,9 @@ import ysn.com.wanandroid.widget.component.super_recycler_view.ISuperRecyclerVie
 public class IndexViewModel extends BaseViewModel {
 
     private ResultLiveData<List<Banner>> bannerResultLiveData = new ResultLiveData<>();
-    private ISuperRecyclerView superRecyclerView;
+    public SuperBindingResult articleBindingResult = new SuperBindingResult();
 
-    public void init(ISuperRecyclerView superRecyclerView) {
-        this.superRecyclerView = superRecyclerView;
+    public void init() {
         getBanner();
         getArticleList(0);
     }
@@ -54,20 +53,14 @@ public class IndexViewModel extends BaseViewModel {
                 new BaseNetworkCallback<NetworkResultList<Article>>() {
                     @Override
                     public void onSuccess(NetworkResultList<Article> data) {
-                        if (page == 0) {
-                            superRecyclerView.refreshSuccess(data.datas, data.curPage, data.pageCount);
-                        } else {
-                            superRecyclerView.loadMoreSuccess(data.datas, data.curPage, data.pageCount);
-                        }
+                        articleBindingResult.setNetworkResultList(data).setState(page == 0 ?
+                                SuperBindingResult.State.REFRESH_SUCCESS : SuperBindingResult.State.LOAD_MORE_SUCCESS);
                     }
 
                     @Override
                     public void onFailure(int code, String msg) {
-                        if (page == 0) {
-                            superRecyclerView.refreshFailure();
-                        } else {
-                            superRecyclerView.loadMoreFailure();
-                        }
+                        articleBindingResult.setState(page == 0 ?
+                                SuperBindingResult.State.REFRESH_FAILURE : SuperBindingResult.State.LOAD_MORE_FAILURE);
                     }
                 });
         addDisposable(articleList);
@@ -75,5 +68,12 @@ public class IndexViewModel extends BaseViewModel {
 
     public ResultLiveData<List<Banner>> getBannerResultLiveData() {
         return bannerResultLiveData;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        bannerResultLiveData = null;
+        articleBindingResult = null;
     }
 }

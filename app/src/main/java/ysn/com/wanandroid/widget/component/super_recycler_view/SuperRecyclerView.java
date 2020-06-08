@@ -31,7 +31,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     private ViewSuperRecyclerViewBinding dataBinding;
     private BaseEmptyRecyclerAdapter adapter;
-    private ObservableField<DataState> stateObservableField = new ObservableField<>();
+    private ObservableField<EmptyLayoutState> emptyLayoutObservable = new ObservableField<>();
     private ItemViewManager<BaseEmptyRecyclerAdapter.EmptyData, LayoutDataStateBinding> stateBindingItemViewManager;
 
     private int pageNum, pages;
@@ -63,19 +63,19 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
         dataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         dataBinding.recyclerView.setHasFixedSize(true);
 
-        stateObservableField.set(DataState.LOADING);
+        emptyLayoutObservable.set(EmptyLayoutState.LOADING);
         stateBindingItemViewManager = new ItemViewManager<>(R.layout.layout_data_state, this::onBindViewHolder);
     }
 
     public void onBindViewHolder(LayoutDataStateBinding binding, BaseEmptyRecyclerAdapter.EmptyData emptyData) {
-        binding.setState(stateObservableField);
+        binding.setEmptyLayoutState(emptyLayoutObservable);
         binding.getRoot().setOnClickListener(v -> {
-            switch (stateObservableField.get()) {
+            switch (emptyLayoutObservable.get()) {
                 case EMPTY:
                 case ERROR:
                     if (refreshListener != null) {
                         showLoading();
-                        postDelayed(() -> refreshListener.onRefresh(), 500);
+                        postDelayed(() -> refreshListener.onRefresh(0), 500);
                     }
                 default:
                     break;
@@ -99,9 +99,9 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
     public SuperRecyclerView setAdapter(BaseEmptyRecyclerAdapter adapter) {
         this.adapter = adapter;
         dataBinding.recyclerView.setAdapter(adapter);
-        adapter.registerEmpty(stateBindingItemViewManager);
-        adapter.setEmptyData(new BaseEmptyRecyclerAdapter.EmptyData());
-        showError();
+        adapter.registerEmpty(stateBindingItemViewManager)
+                .setEmptyData(new BaseEmptyRecyclerAdapter.EmptyData());
+        showLoading();
         return this;
     }
 
@@ -146,7 +146,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
             enableRefresh = false;
         } else {
             dataBinding.refreshLayout.setEnableRefresh(true);
-            dataBinding.refreshLayout.setOnRefreshListener(refreshLayout -> refreshListener.onRefresh());
+            dataBinding.refreshLayout.setOnRefreshListener(refreshLayout -> refreshListener.onRefresh(0));
             enableRefresh = true;
         }
         return this;
@@ -174,7 +174,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     @Override
     public SuperRecyclerView showLoading() {
-        stateObservableField.set(DataState.LOADING);
+        emptyLayoutObservable.set(EmptyLayoutState.LOADING);
         dataBinding.refreshLayout.setEnableRefresh(false);
         dataBinding.refreshLayout.setEnableLoadMore(false);
         return this;
@@ -182,7 +182,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     @Override
     public SuperRecyclerView showError() {
-        stateObservableField.set(DataState.ERROR);
+        emptyLayoutObservable.set(EmptyLayoutState.ERROR);
         dataBinding.refreshLayout.setEnableRefresh(false);
         dataBinding.refreshLayout.setEnableLoadMore(false);
         return this;
@@ -190,7 +190,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
 
     @Override
     public SuperRecyclerView showEmpty() {
-        stateObservableField.set(DataState.EMPTY);
+        emptyLayoutObservable.set(EmptyLayoutState.EMPTY);
         dataBinding.refreshLayout.setEnableRefresh(false);
         dataBinding.refreshLayout.setEnableLoadMore(false);
         return this;
@@ -266,7 +266,7 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
         if (adapter.getDatas().isEmpty()) {
             showEmpty();
         } else {
-            stateObservableField.set(DataState.EMPTY);
+            emptyLayoutObservable.set(EmptyLayoutState.EMPTY);
             dataBinding.refreshLayout.setEnableRefresh(enableRefresh);
             dataBinding.refreshLayout.setEnableLoadMore(enableLoadMore);
             dataBinding.refreshLayout.setNoMoreData(false);
@@ -276,12 +276,16 @@ public class SuperRecyclerView extends LinearLayout implements ISuperRecyclerVie
         }
     }
 
+    public BaseEmptyRecyclerAdapter getAdapter() {
+        return adapter;
+    }
+
     public ISuperRecyclerView getSuperRecyclerView() {
         return this;
     }
 
     public interface OnRefreshListener {
-        void onRefresh();
+        void onRefresh(int pageNum);
     }
 
     public interface OnLoadMoreListener {

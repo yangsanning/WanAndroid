@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SuperRecyclerView">
+        <attr name="onRefresh" format="reference" />
+        <attr name="enableRefresh" format="reference" />
+        <attr name="onLoadMore" format="reference" />
+        <attr name="itemDecoration" format="reference" />
+        <attr name="itemViewManagerMap" format="reference" />
+        <attr name="bindingResult" format="reference" />
+    </declare-styleable>
+</resources>

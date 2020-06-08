@@ -7,11 +7,11 @@
 
         <import type="androidx.databinding.ObservableField" />
 
-        <import type="ysn.com.wanandroid.widget.component.super_recycler_view.DataState" />
+        <import type="ysn.com.wanandroid.widget.component.super_recycler_view.EmptyLayoutState" />
 
         <variable
-            name="state"
-            type="ObservableField&lt;DataState>" />
+            name="emptyLayoutState"
+            type="ObservableField&lt;EmptyLayoutState>" />
 
         <variable
             name="view"
@@ -25,14 +25,14 @@
 
         <include
             layout="@layout/layout_loading"
-            android:visibility="@{state==DataState.LOADING? View.VISIBLE : View.GONE}" />
+            android:visibility="@{emptyLayoutState==EmptyLayoutState.LOADING? View.VISIBLE : View.GONE}" />
 
         <include
             layout="@layout/layout_empty"
-            android:visibility="@{state==DataState.EMPTY? View.VISIBLE : View.GONE}" />
+            android:visibility="@{emptyLayoutState==EmptyLayoutState.EMPTY? View.VISIBLE : View.GONE}" />
 
         <include
             layout="@layout/layout_error"
-            android:visibility="@{state==DataState.ERROR? View.VISIBLE : View.GONE}" />
+            android:visibility="@{emptyLayoutState==EmptyLayoutState.ERROR? View.VISIBLE : View.GONE}" />
     </LinearLayout>
 </layout>
