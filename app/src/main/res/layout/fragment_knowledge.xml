@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="ysn.com.wanandroid.page.knowledge.KnowledgeFragment" />
+
+        <variable
+            name="vm"
+            type="ysn.com.wanandroid.page.knowledge.KnowledgeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar"
+            android:gravity="center"
+            android:text="@string/text_knowledge"
+            android:textColor="@color/app_text_title"
+            android:textSize="@dimen/pt40" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_80"
+            android:layout_marginStart="@dimen/app_space_big"
+            android:layout_marginTop="@dimen/px_4"
+            android:layout_marginEnd="@dimen/app_space_big"
+            android:layout_marginBottom="@dimen/px_4"
+            android:background="@drawable/bg_search"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/px_56"
+                android:layout_height="@dimen/px_56"
+                android:src="@drawable/ic_search" />
+
+            <TextView
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_space_small"
+                android:text="@string/text_search_hint"
+                android:textColor="@color/app_text_summary"
+                android:textSize="@dimen/pt30" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/app_space_big"
+                android:text="@{@string/text_knowledge_total(vm.total)}"
+                android:textColor="@color/app_text_summary"
+                android:textSize="@dimen/pt26" />
+
+            <TextView
+                android:id="@+id/newest"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/hottest"
+                android:gravity="center"
+                android:onClick="@{()->fragment.getData()}"
+                android:paddingStart="@dimen/app_space_big"
+                android:paddingEnd="@dimen/px_15"
+                android:text="@string/text_newest"
+                android:textColor="@color/app_text_title"
+                android:textSize="@dimen/pt26" />
+
+            <TextView
+                android:id="@+id/hottest"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:paddingStart="@dimen/px_15"
+                android:paddingEnd="@dimen/app_space_big"
+                android:text="@string/text_screen"
+                android:textColor="@color/app_text_title"
+                android:textSize="@dimen/pt26" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

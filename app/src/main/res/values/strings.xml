@@ -6,6 +6,7 @@
     <string name="text_permission_denied">权限不足</string>
     <string name="text_loading_error">加载失败，点击重试</string>
     <string name="text_loading_empty">暂无内容</string>
+    <string name="text_no_more_data">没有更多数据了</string>
 
     <string name="text_user_name_not_null">用户名不能为空</string>
     <string name="text_pwd_not_null">密码不能为空</string>
@@ -14,4 +15,11 @@
     <string name="menu_item_system">体系</string>
     <string name="menu_item_project">项目</string>
     <string name="menu_item_my">我的</string>
+
+    <string name="text_search_hint">搜索关键词与空格形式隔开</string>
+
+    <string name="text_knowledge">知识体系</string>
+    <string name="text_knowledge_total">%1$s个教程</string>
+    <string name="text_newest">最新</string>
+    <string name="text_screen">筛选</string>
 </resources>

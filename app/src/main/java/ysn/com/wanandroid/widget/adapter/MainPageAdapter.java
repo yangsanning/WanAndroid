@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.lazy.library.logging.Logcat;
-
 import ysn.com.wanandroid.TestFragment;
 import ysn.com.wanandroid.page.index.IndexFragment;
+import ysn.com.wanandroid.page.knowledge.KnowledgeFragment;
 
 /**
  * @Author yangsanning
@@ -29,7 +28,7 @@ public class MainPageAdapter extends FragmentStateAdapter {
             case 0:
                 return IndexFragment.newInstance();
             case 1:
-                return TestFragment.newInstance("体系");
+                return KnowledgeFragment.newInstance();
             case 2:
                 return TestFragment.newInstance("项目");
             default:

@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 /**
  * @Author yangsanning
  * @ClassName Article
@@ -107,4 +109,21 @@ public class Article {
     public int visible;
     @ColumnInfo(name = "zan")
     public int zan;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Article)) {
+            return false;
+        }
+        Article article = (Article) o;
+        return id == article.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

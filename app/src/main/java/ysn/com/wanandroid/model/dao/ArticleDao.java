@@ -15,4 +15,15 @@ import ysn.com.wanandroid.model.bean.Article;
 @Dao
 public interface ArticleDao extends BaseDao<Article> {
 
+    @Query("SELECT * FROM Article ORDER BY PUBLISHTIME DESC")
+    DataSource.Factory<Integer, Article> getData();
+
+    @Query("SELECT * FROM Article WhERE CHAPTERID=:chapterId ORDER BY PUBLISHTIME DESC")
+    DataSource.Factory<Integer, Article> getDataByChapterId(int chapterId);
+
+    @Query("SELECT COUNT(*) FROM ARTICLE")
+    int getTotal();
+
+    @Query("SELECT COUNT(*) FROM ARTICLE WhERE CHAPTERID=:chapterId")
+    int getTotalByChapterId(int chapterId);
 }

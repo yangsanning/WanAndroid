@@ -26,7 +26,7 @@ import ysn.com.mvvm.widget.adapter.ItemViewManager;
 import ysn.com.wanandroid.BR;
 import ysn.com.wanandroid.R;
 import ysn.com.wanandroid.databinding.FragmentIndexBinding;
-import ysn.com.wanandroid.databinding.ItemIndexArticleBinding;
+import ysn.com.wanandroid.databinding.ItemArticleBinding;
 import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.model.bean.Banner;
 import ysn.com.wanandroid.model.bean.Navigation;
@@ -88,8 +88,8 @@ public class IndexFragment extends BaseLazyFragment<IndexViewModel, FragmentInde
 
     private void initArticle() {
         articleItemDecoration = new DefaultItemDecoration().addTopDecoration(0, ResUtils.getDimension(R.dimen.app_space_small));
-        articleItemViewManagerMap.put(Article.class, new ItemViewManager<Article, ItemIndexArticleBinding>
-                (R.layout.item_index_article, (binding, article) -> {
+        articleItemViewManagerMap.put(Article.class, new ItemViewManager<Article, ItemArticleBinding>
+                (R.layout.item_article, (binding, article) -> {
                     binding.setArticle(article);
                     binding.getRoot().setOnClickListener(new View.OnClickListener() {
                         @Override
