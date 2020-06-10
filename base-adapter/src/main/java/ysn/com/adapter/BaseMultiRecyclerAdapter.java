@@ -1,4 +1,4 @@
-package ysn.com.mvvm.widget.adapter;
+package ysn.com.adapter;
 
 import android.view.ViewGroup;
 

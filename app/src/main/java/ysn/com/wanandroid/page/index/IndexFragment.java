@@ -18,11 +18,11 @@ import com.zhpan.bannerview.BaseViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import ysn.com.adapter.BaseRecyclerAdapter;
+import ysn.com.adapter.ItemViewManager;
 import ysn.com.mvvm.base.BaseLazyFragment;
 import ysn.com.mvvm.utils.ImageUtils;
 import ysn.com.mvvm.utils.ResUtils;
-import ysn.com.mvvm.widget.adapter.BaseRecyclerAdapter;
-import ysn.com.mvvm.widget.adapter.ItemViewManager;
 import ysn.com.wanandroid.BR;
 import ysn.com.wanandroid.R;
 import ysn.com.wanandroid.databinding.FragmentIndexBinding;

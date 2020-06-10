@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
-import ysn.com.mvvm.widget.adapter.BaseViewHolder;
+import ysn.com.adapter.BaseViewHolder;
 import ysn.com.wanandroid.R;
 
 /**

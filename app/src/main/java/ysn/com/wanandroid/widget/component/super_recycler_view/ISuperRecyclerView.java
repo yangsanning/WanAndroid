@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ysn.com.mvvm.widget.adapter.BaseEmptyRecyclerAdapter;
-import ysn.com.mvvm.widget.adapter.ItemViewManager;
+import ysn.com.adapter.BaseEmptyRecyclerAdapter;
+import ysn.com.adapter.ItemViewManager;
 
 /**
  * @Author yangsanning

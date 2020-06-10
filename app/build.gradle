@@ -36,6 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(path: ':base-mvvm')
+    implementation project(path: ':base-adapter')
 
     implementation rootProject.ext.ysnLibs
 

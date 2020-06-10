@@ -1,4 +1,4 @@
-package ysn.com.mvvm.widget.adapter;
+package ysn.com.adapter;
 
 /**
  * @Author yangsanning
