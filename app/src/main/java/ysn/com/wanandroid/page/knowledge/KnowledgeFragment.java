@@ -1,11 +1,13 @@
 package ysn.com.wanandroid.page.knowledge;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import ysn.com.mvvm.base.BaseLazyFragment;
+import ysn.com.mvvm.utils.ResUtils;
 import ysn.com.wanandroid.BR;
 import ysn.com.wanandroid.R;
 import ysn.com.wanandroid.databinding.FragmentKnowledgeBinding;
@@ -14,6 +16,7 @@ import ysn.com.wanandroid.model.bean.Article;
 import ysn.com.wanandroid.widget.base.BasePagedListAdapter;
 import ysn.com.wanandroid.widget.decoration.DefaultItemDecoration;
 import ysn.com.wanandroid.widget.diff.ArticleDiff;
+import ysn.com.wanandroid.widget.pop.KnowledgeMenuPopWindow;
 
 /**
  * @Author yangsanning
@@ -23,7 +26,8 @@ import ysn.com.wanandroid.widget.diff.ArticleDiff;
  */
 public class KnowledgeFragment extends BaseLazyFragment<KnowledgeViewModel, FragmentKnowledgeBinding> {
 
-    public BasePagedListAdapter<Article, ItemArticleBinding> articleAdapter;
+    private KnowledgeMenuPopWindow knowledgeMenuPopWindow;
+    private BasePagedListAdapter<Article, ItemArticleBinding> articleAdapter;
 
     public static KnowledgeFragment newInstance() {
         Bundle args = new Bundle();
@@ -64,5 +68,23 @@ public class KnowledgeFragment extends BaseLazyFragment<KnowledgeViewModel, Frag
             dataBinding.recyclerview.scrollToPosition(0);
             articleAdapter.submitList(articleList);
         });
+    }
+
+    public void getData(int chapterId) {
+        viewModel.getData(chapterId).observe(this, articleList -> {
+            articleAdapter.submitList(null);
+            dataBinding.recyclerview.scrollToPosition(0);
+            articleAdapter.submitList(articleList);
+        });
+    }
+
+    public void showMenuPop(View view) {
+        if (knowledgeMenuPopWindow == null) {
+            knowledgeMenuPopWindow = new KnowledgeMenuPopWindow(activityCast());
+            knowledgeMenuPopWindow.setOnMenuItemClickListener(this::getData);
+        }
+        if (!knowledgeMenuPopWindow.isShowing()) {
+            knowledgeMenuPopWindow.showAsDropDown(view, 0, -(int) ResUtils.getDimension(R.dimen.px_12));
+        }
     }
 }

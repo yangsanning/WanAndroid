@@ -7,4 +7,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFrame">@null</item>
     </style>
+
+    <style name="BasePopupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/base_popup_window_show</item>
+        <item name="android:windowExitAnimation">@anim/base_popup_window_gone</item>
+    </style>
 </resources>

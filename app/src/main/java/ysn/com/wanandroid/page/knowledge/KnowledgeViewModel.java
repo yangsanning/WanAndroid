@@ -2,6 +2,7 @@ package ysn.com.wanandroid.page.knowledge;
 
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
@@ -50,5 +51,15 @@ public class KnowledgeViewModel extends BaseViewModel {
                 .subscribe(integer -> total.set(integer));
         addDisposable(disposable);
         return new LivePagedListBuilder<>(articleDao.getData(), pageConfig).build();
+    }
+
+    public LiveData<PagedList<Article>> getData(int superChapterId) {
+        Disposable disposable = Observable.create((ObservableOnSubscribe<Integer>) emitter ->
+                emitter.onNext(articleDao.getTotalBySuperChapterId(superChapterId)))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(integer -> total.set(integer));
+        addDisposable(disposable);
+        return new LivePagedListBuilder<>(articleDao.getDataBySuperChapterId(superChapterId), pageConfig).build();
     }
 }

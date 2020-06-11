@@ -69,17 +69,17 @@
                 android:id="@+id/newest"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toStartOf="@+id/hottest"
+                android:layout_toStartOf="@+id/screen"
                 android:gravity="center"
                 android:onClick="@{()->fragment.getData()}"
                 android:paddingStart="@dimen/app_space_big"
                 android:paddingEnd="@dimen/px_15"
                 android:text="@string/text_newest"
-                android:textColor="@color/app_text_title"
+                android:textColor="@drawable/selector_text_color"
                 android:textSize="@dimen/pt26" />
 
             <TextView
-                android:id="@+id/hottest"
+                android:id="@+id/screen"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
@@ -87,7 +87,8 @@
                 android:paddingStart="@dimen/px_15"
                 android:paddingEnd="@dimen/app_space_big"
                 android:text="@string/text_screen"
-                android:textColor="@color/app_text_title"
+                android:onClick="@{fragment::showMenuPop}"
+                android:textColor="@drawable/selector_text_color"
                 android:textSize="@dimen/pt26" />
         </RelativeLayout>
 

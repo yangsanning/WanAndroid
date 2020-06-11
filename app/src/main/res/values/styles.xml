@@ -15,4 +15,10 @@
     <style name="TextInputOverCountTheme" parent="Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
         <item name="android:textColor">@color/app_red</item>
     </style>
+
+
+    <style name="TRM_ANIM_STYLE">
+        <item name="android:windowEnterAnimation">@anim/trm_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/trm_popup_exit</item>
+    </style>
 </resources>

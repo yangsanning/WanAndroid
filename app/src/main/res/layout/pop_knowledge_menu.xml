@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="pop"
+            type="ysn.com.wanandroid.widget.pop.KnowledgeMenuPopWindow" />
+
+        <variable
+            name="constant"
+            type="ysn.com.wanandroid.constant.ArticleChannelConstant" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/topView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/app_space_small">
+
+        <View
+            android:layout_width="@dimen/px_20"
+            android:layout_height="@dimen/px_10"
+            android:layout_marginEnd="@dimen/app_space_small"
+            android:background="@drawable/ic_pop_window_menu_arrow" />
+
+        <TextView
+            android:layout_width="@dimen/px_198"
+            android:layout_height="@dimen/app_bar"
+            android:background="@color/app_pop_window_menu"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{()->pop.onClick(constant.CUSTOM_VIEW_ID)}"
+            android:paddingEnd="@dimen/px_5"
+            android:text="自定义控件"
+            android:textColor="@color/app_white"
+            android:textSize="@dimen/pt32" />
+
+        <TextView
+            android:layout_width="@dimen/px_198"
+            android:layout_height="@dimen/app_bar"
+            android:background="@color/app_pop_window_menu"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{()->pop.onClick(constant.NEW_TECHNOLOGY_ID)}"
+            android:paddingEnd="@dimen/px_5"
+            android:text="5.+高新技术"
+            android:textColor="@color/app_white"
+            android:textSize="@dimen/pt32" />
+    </LinearLayout>
+</layout>

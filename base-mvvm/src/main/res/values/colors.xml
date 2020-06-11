@@ -2,6 +2,8 @@
 <resources>
     <color name="loading_dialog_bg">#90000000</color>
 
+    <color name="app_transparent">#00000000</color>
+
     <color name="toast_text">#FFFFFF</color>
     <color name="toast_bg">#90000000</color>
 </resources>
