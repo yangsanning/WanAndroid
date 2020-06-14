@@ -22,4 +22,6 @@
     <string name="text_knowledge_total">%1$s个教程</string>
     <string name="text_newest">最新</string>
     <string name="text_screen">筛选</string>
+
+    <string name="text_project_summary">项目汇总</string>
 </resources>

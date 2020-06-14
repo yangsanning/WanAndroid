@@ -54,6 +54,7 @@ ext {
     ysnLib = [
             bottom_menu_layout : "com.github.yangsanning:BottomMenuLayout:v1.1.0",   // 底部按钮
             baseitem_decoration: "com.github.yangsanning:BaseItemDecoration:1.1.0",  // 分割线
+            autoEllipsisTexView: "com.github.yangsanning:AutoEllipsisTexView:1.0.1",  // 当文本溢出时，显示 ... 的 TextView
     ]
 
     baseLibs = baseLib.values()

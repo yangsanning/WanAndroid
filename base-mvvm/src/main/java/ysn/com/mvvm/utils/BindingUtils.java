@@ -16,4 +16,9 @@ public class BindingUtils {
     public static void setSrc(ImageView view, int resId) {
         view.setImageResource(resId);
     }
+
+    @BindingAdapter("imageUrl")
+    public static void setSrc(ImageView imageView, String url) {
+        ImageUtils.loadImage(imageView.getContext(), url, imageView);
+    }
 }

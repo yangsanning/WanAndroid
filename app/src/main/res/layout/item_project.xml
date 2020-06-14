@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ysn="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="ysn.com.mvvm.utils.ValidatorUtils" />
+
+        <import type="ysn.com.mvvm.utils.TimeUtils" />
+
+        <variable
+            name="article"
+            type="ysn.com.wanandroid.model.bean.Article" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_308"
+        android:background="@drawable/line_bg_white_bottom"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/app_space_big"
+        android:paddingTop="@dimen/app_space_small"
+        android:paddingEnd="@dimen/app_space_big"
+        android:paddingBottom="@dimen/app_space_small">
+
+        <ysn.com.wanandroid.widget.component.RatioImageView
+            android:id="@+id/image"
+            imageUrl="@{article.envelopePic}"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            ysn:round_corner="@dimen/px_8"
+            ysn:stroke_color="@color/app_icon_select"
+            ysn:stroke_width="@dimen/px_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/app_space_small"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="@{article.title}"
+                android:textColor="@color/app_text_title"
+                android:textSize="@dimen/pt34"
+                tools:text="我是标题" />
+
+            <ysn.com.view.autoellipsistextview.AutoEllipsisTexView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/px_8"
+                android:layout_marginBottom="@dimen/px_8"
+                android:layout_weight="1"
+                tools:text="我是摘要"
+                ysn:padding="0dp"
+                ysn:text="@{article.desc}"
+                ysn:gravity="start"
+                ysn:textColor="@color/app_text_summary"
+                ysn:textSize="@dimen/pt26" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{ValidatorUtils.isBlank(article.author)? article.shareUser:article.author}"
+                    android:textColor="@color/app_text_summary"
+                    android:textSize="@dimen/pt24"
+                    tools:text="五碗饭" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@{TimeUtils.formatLong2Today(article.shareDate==0? article.publishTime :article.shareDate)}"
+                    android:textColor="@color/app_text_summary"
+                    android:textSize="@dimen/pt24"
+                    tools:text="2020-6-13" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

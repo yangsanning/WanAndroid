@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:super="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="ysn.com.wanandroid.page.project.ProjectFragment" />
+
+        <variable
+            name="vm"
+            type="ysn.com.wanandroid.page.project.ProjectModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar"
+            android:background="@drawable/line_bg_white_bottom"
+            android:gravity="center"
+            android:text="@string/text_project_summary"
+            android:textColor="@color/app_text_title"
+            android:textSize="@dimen/pt40" />
+
+        <ysn.com.wanandroid.widget.component.super_recycler_view.SuperRecyclerView
+            android:id="@+id/project_super_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            super:bindingResult="@{vm.projectBindingResult}"
+            super:itemViewManagerMap="@{fragment.projectItemViewManagerMap}"
+            super:onLoadMore="@{vm::getProjectList}"
+            super:onRefresh="@{vm::getProjectList}" />
+    </LinearLayout>
+</layout>

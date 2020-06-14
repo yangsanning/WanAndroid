@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import ysn.com.wanandroid.TestFragment;
 import ysn.com.wanandroid.page.index.IndexFragment;
 import ysn.com.wanandroid.page.knowledge.KnowledgeFragment;
+import ysn.com.wanandroid.page.project.ProjectFragment;
 
 /**
  * @Author yangsanning
@@ -30,7 +31,7 @@ public class MainPageAdapter extends FragmentStateAdapter {
             case 1:
                 return KnowledgeFragment.newInstance();
             case 2:
-                return TestFragment.newInstance("项目");
+                return ProjectFragment.newInstance();
             default:
                 return TestFragment.newInstance("我的");
         }

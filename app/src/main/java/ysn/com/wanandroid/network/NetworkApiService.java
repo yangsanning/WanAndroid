@@ -35,7 +35,7 @@ public interface NetworkApiService {
      * @return
      */
     @FormUrlEncoded
-    @POST("/user/login")
+    @POST("user/login")
     Observable<NetworkResult<User>> login(@Field("username") String phone, @Field("password") String password);
 
     /**
@@ -43,7 +43,7 @@ public interface NetworkApiService {
      *
      * @return 知识体系列表
      */
-    @GET("/tree/json")
+    @GET("tree/json")
     Observable<NetworkResult<List<Knowledge>>> getKnowledgeList();
 
     /**
@@ -52,7 +52,7 @@ public interface NetworkApiService {
      * @param page 页码
      * @return 相应页面文章列表
      */
-    @GET("/article/list/{page}/json")
+    @GET("article/list/{page}/json")
     Observable<NetworkResult<NetworkResultList<Article>>> getKnowledgeArticleList(@Path("page") int page, @Query("cid") int cid);
 
     /**
@@ -60,7 +60,7 @@ public interface NetworkApiService {
      *
      * @return 首页banner
      */
-    @GET("/banner/json")
+    @GET("banner/json")
     Observable<NetworkResult<List<Banner>>> getBanner();
 
     /**
@@ -69,6 +69,15 @@ public interface NetworkApiService {
      * @param page 页码
      * @return 相应页面文章列表
      */
-    @GET("/article/list/{page}/json")
+    @GET("article/list/{page}/json")
     Observable<NetworkResult<NetworkResultList<Article>>> getArticleList(@Path("page") int page);
+
+    /**
+     * 获取项目列表
+     *
+     * @param page 页码
+     * @return 相应项目列表
+     */
+    @GET("article/listproject/{page}/json")
+    Observable<NetworkResult<NetworkResultList<Article>>> getProjectList(@Path("page") int page);
 }

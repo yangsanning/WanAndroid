@@ -1,9 +1,9 @@
 package ysn.com.wanandroid.model.bean;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,103 +12,76 @@ import java.util.Objects;
  * @Description 一句话概括作用
  * @Date 2020/5/25
  */
-@Entity(tableName = "Article")
+@Entity()
 public class Article {
 
     /**
      * apkLink :
      * audit : 1
-     * author : 谷歌开发者
+     * author : SlamDunk007
      * canEdit : false
-     * chapterId : 415
-     * chapterName : 谷歌开发者
+     * chapterId : 339
+     * chapterName : K线图
      * collect : false
      * courseId : 13
-     * desc :
+     * desc : 使用Canvas进行股票行情图K线的绘制。 （1）股票行情图K线数据的集中处理 （2）股票行情图双缓冲绘制，具体绘制流程在子线程当中进行，然后将绘制好的bitmap交由onDraw当中的canvas直接进行绘制，打开GPU呈现模式，发现越复杂的绘制，对于GPU消耗有所下降 （3）主图和附图完全隔离，最终达到的效果是各种附图和主图能够进行随意组合。 （4）项目在业余时间，慢慢的优化和更新当中
      * descMd :
-     * envelopePic :
+     * envelopePic : https://wanandroid.com/blogimgs/9e40bf04-9963-4ae7-b4e5-e89cd6f1c808.png
      * fresh : false
-     * id : 13516
-     * link : https://mp.weixin.qq.com/s/wzSi7UrFK6iQV2MA2OCwew
-     * niceDate : 2020-05-21 00:00
-     * niceShareDate : 2020-05-21 19:45
+     * id : 13817
+     * link : https://www.wanandroid.com/blog/show/2770
+     * niceDate : 2020-06-09 00:23
+     * niceShareDate : 2020-06-09 00:23
      * origin :
      * prefix :
-     * projectLink :
-     * publishTime : 1589990400000
+     * projectLink : https://github.com/SlamDunk007/StockChart
+     * publishTime : 1591633423000
      * selfVisible : 0
-     * shareDate : 1590061558000
+     * shareDate : 1591633423000
      * shareUser :
-     * superChapterId : 408
-     * superChapterName : 公众号
-     * tags : [{"name":"公众号","url":"/wxarticle/list/415/1"}]
-     * title : 协程中的取消和异常 | 核心概念介绍
+     * superChapterId : 294
+     * superChapterName : 开源项目主Tab
+     * tags : [{"name":"项目","url":"/project/list/1?cid=339"}]
+     * title : 从0到1绘制股票行情图
      * type : 0
      * userId : -1
      * visible : 1
      * zan : 0
      */
+
     @PrimaryKey
-    @ColumnInfo(name = "id")
     public int id;
-    @ColumnInfo(name = "apkLink")
+
     public String apkLink;
-    @ColumnInfo(name = "audit")
     public int audit;
-    @ColumnInfo(name = "author")
     public String author;
-    @ColumnInfo(name = "canEdit")
     public boolean canEdit;
-    @ColumnInfo(name = "chapterId")
     public int chapterId;
-    @ColumnInfo(name = "chapterName")
     public String chapterName;
-    @ColumnInfo(name = "collect")
     public boolean collect;
-    @ColumnInfo(name = "courseId")
     public int courseId;
-    @ColumnInfo(name = "desc")
     public String desc;
-    @ColumnInfo(name = "descMd")
     public String descMd;
-    @ColumnInfo(name = "envelopePic")
     public String envelopePic;
-    @ColumnInfo(name = "fresh")
     public boolean fresh;
-    @ColumnInfo(name = "link")
     public String link;
-    @ColumnInfo(name = "niceDate")
     public String niceDate;
-    @ColumnInfo(name = "niceShareDate")
     public String niceShareDate;
-    @ColumnInfo(name = "origin")
     public String origin;
-    @ColumnInfo(name = "prefix")
     public String prefix;
-    @ColumnInfo(name = "projectLink")
     public String projectLink;
-    @ColumnInfo(name = "publishTime")
     public long publishTime;
-    @ColumnInfo(name = "selfVisible")
     public int selfVisible;
-    @ColumnInfo(name = "shareDate")
     public long shareDate;
-    @ColumnInfo(name = "shareUser")
     public String shareUser;
-    @ColumnInfo(name = "superChapterId")
     public int superChapterId;
-    @ColumnInfo(name = "superChapterName")
     public String superChapterName;
-    @ColumnInfo(name = "title")
     public String title;
-    @ColumnInfo(name = "type")
     public int type;
-    @ColumnInfo(name = "userId")
     public int userId;
-    @ColumnInfo(name = "visible")
     public int visible;
-    @ColumnInfo(name = "zan")
     public int zan;
+    public List<TagsBean> tags;
 
     @Override
     public boolean equals(Object o) {
@@ -125,5 +98,31 @@ public class Article {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public static class TagsBean {
+        /**
+         * name : 项目
+         * url : /project/list/1?cid=339
+         */
+
+        public String name;
+        public String url;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 }

@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
+import ysn.com.wanandroid.model.bean.Article;
 
 /**
  * @Author yangsanning
@@ -63,5 +66,22 @@ public class RoomConversionFactory {
         Type listType = new TypeToken<ArrayList<String>>() {
         }.getType();
         return new Gson().fromJson(value, listType);
+    }
+
+    @TypeConverter
+    public static String listToString(List<Article.TagsBean> objectList) {
+        if (objectList == null) {
+            return "";
+        }
+        return new Gson().toJson(objectList);
+    }
+
+    @TypeConverter
+    public List<Article.TagsBean> stringToList(String objectString) {
+        if (objectString == null) {
+            return new ArrayList<>();
+        }
+        return new Gson().fromJson(objectString, new TypeToken<List<Article.TagsBean>>() {
+        }.getType());
     }
 }
